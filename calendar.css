@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Advent+Pro&display=swap');
 * {
-  box-sizing: border-box;
-  transition: margin ease-out .4s;
+	box-sizing: border-box;
+	transition: margin ease-out .4s;
 }
 html, body {
 	height: 100%;
 	margin: 0;
-  padding: 0;
-  transition:.4s;
-  user-select: none;
+	padding: 0;
+	transition: .4s;
+	user-select: none;
 }
 /* general colour variables */
 
 html {
 	font-family: 'Advent Pro', sans-serif;
-  background: var(--grey-white);
+	background: var(--grey-white);
 	--grey-white: #dfdfdf;
 	--white: #efefef;
 	--black: #2b2b2b;
@@ -24,9 +24,9 @@ html {
 }
 html[data-theme='dark'] {
 	--bg-main: linear-gradient(45deg, #1C2437, #455880);
-  --grey-white: #333333;
-  --blue: #FFA700;
-  /* --gold:#2c3e50; */
+	--grey-white: #333333;
+	--blue: #FFA700;
+	/* --gold:#2c3e50; */
 	--main-text-color: #B5B5B5;
 	--white: #434343;
 }
@@ -46,11 +46,11 @@ h3 {
 	width: 20%;
 	padding: 0 10px;
 }
-.column:first-child{
-  padding-left:0px;
+.column:first-child {
+	padding-left: 0px;
 }
-.column:last-child{
-  padding-right:0px;
+.column:last-child {
+	padding-right: 0px;
 }
 /* Remove extra left and right margins, due to padding */
 
@@ -64,7 +64,6 @@ h3 {
 	display: table;
 	clear: both;
 }
-
 /* Style the counter cards */
 
 .card {
@@ -115,9 +114,9 @@ label {
 	background: var(--grey-white);
 	float: right;
 	border-radius: 100px;
-  position: relative;
-  margin-right:10px;
-  box-shadow: inset 15px 15px 32px rgba(0, 0, 0, 0.062);
+	position: relative;
+	margin-right: 10px;
+	box-shadow: inset 15px 15px 32px rgba(0, 0, 0, 0.062);
 }
 label:after {
 	content: '';
@@ -143,51 +142,47 @@ input:checked+label:after {
 label:active:after {
 	width: 25px;
 }
-
 /* Responsive columns */
+
 @media screen and (max-width: 1340px) {
-.mainBox{
-  width:90%;
-}
+	.mainBox {
+		width: 90%;
+	}
 }
 @media screen and (max-width: 1100px) {
 	.column {
 		width: 33.333%;
 		display: block;
-    margin-bottom: 20px;
-    
-  }
-  .column:first-child, .coloumn:nth-child(3){
-    padding-left:5px;
-  }
-  .column:last-child{
-    padding-right:5px;
-  }
-  .mainBox{
-    margin-bottom:5%;
-    transform: translate(-50%, 0%);
-    top:5%;
-  }
+		margin-bottom: 20px;
+	}
+	.column:first-child, .coloumn:nth-child(3) {
+		padding-left: 5px;
+	}
+	.column:last-child {
+		padding-right: 5px;
+	}
+	.mainBox {
+		margin-bottom: 5%;
+		transform: translate(-50%, 0%);
+		top: 5%;
+	}
 }
 @media screen and (max-width: 680px) {
-
-  .mainBox{
-    width:100%;
-    max-width:90vw;
-  	position: absolute;
-	 top: 2.5%; 
-	left: 50%;
-  margin-right: -50%;
-  
-	transform: translate(-50%, 0%);
-}
-.column:first-child, .coloumn:nth-child(3){
-  padding-left:10px;
-}
-.column:last-child{
-  padding-right:10px;
-}
-
+	.mainBox {
+		width: 100%;
+		max-width: 90vw;
+		position: absolute;
+		top: 2.5%;
+		left: 50%;
+		margin-right: -50%;
+		transform: translate(-50%, 0%);
+	}
+	.column:first-child, .coloumn:nth-child(3) {
+		padding-left: 10px;
+	}
+	.column:last-child {
+		padding-right: 10px;
+	}
 	.column {
 		width: 100%;
 		display: block;
