@@ -76,7 +76,7 @@ fetch(`${api}${date}?latitude=${latitude}&longitude=${longitude}&method=${method
         document.getElementById("AsrPrayer").classList.add("nextPrayer")
     }
 
-    if (currentTime > IshaTime & currentTime < FajrTime){
+    if (currentTime > IshaTime & currentTime < FajrTime ){
         document.getElementById("AsrPrayer").classList.add("nextPrayer")
     }
 
