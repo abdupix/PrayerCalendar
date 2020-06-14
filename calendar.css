@@ -22,8 +22,9 @@ html {
 }
 html[data-theme='dark'] {
 	--bg-main: linear-gradient(45deg, #1C2437, #455880);
-	--grey-white: #333333;
+  --grey-white: #333333;
   --blue: #FFA700;
+  /* --gold:#2c3e50; */
 	--main-text-color: #B5B5B5;
 	--white: #434343;
 }
@@ -42,6 +43,12 @@ h3 {
 	float: left;
 	width: 20%;
 	padding: 0 10px;
+}
+.column:first-child{
+  padding-left:0px;
+}
+.column:last-child{
+  padding-right:0px;
 }
 /* Remove extra left and right margins, due to padding */
 
@@ -144,7 +151,14 @@ label:active:after {
 	.column {
 		width: 33.333%;
 		display: block;
-		margin-bottom: 20px;
+    margin-bottom: 20px;
+    
+  }
+  .column:first-child{
+    padding-left:10px;
+  }
+  .column:last-child{
+    padding-right:10px;
   }
   .mainBox{
     margin-bottom:5%;
