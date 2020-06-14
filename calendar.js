@@ -60,23 +60,23 @@ fetch(`${api}${date}?latitude=${latitude}&longitude=${longitude}&method=${method
     var MaghribTime = `${d.data.timings.Maghrib}`;
     var IshaTime = `${d.data.timings.Isha}`;
 
-    if (currentTime > FajrTime & currentTime < DhuhrTime){
+    if (currentTime > FajrTime & currentTime < DhuhrTime || currentTime == DhuhrTime){
         document.getElementById("DhuhrPrayer").classList.add("nextPrayer");
     }
 
-    if (currentTime > DhuhrTime & currentTime < AsrTime){
+    if (currentTime > DhuhrTime & currentTime < AsrTime || currentTime == AsrTime){
         document.getElementById("AsrPrayer").classList.add("nextPrayer");
     }
 
-    if (currentTime > AsrTime & currentTime < MaghribTime){
+    if (currentTime > AsrTime & currentTime < MaghribTime || currentTime == MaghribTime){
         document.getElementById("MaghribPrayer").classList.add("nextPrayer");
     }
 
-    if (currentTime > MaghribTime & currentTime < IshaTime){
+    if (currentTime > MaghribTime & currentTime < IshaTime || currentTime == IshaTime){
         document.getElementById("IshaPrayer").classList.add("nextPrayer");
     }
 
-    if (currentTime > IshaTime || currentTime < FajrTime ){
+    if (currentTime > IshaTime || currentTime < FajrTime || currentTime == FajrTime){
         document.getElementById("FajrPrayer").classList.add("nextPrayer");
     }
 
