@@ -91,7 +91,7 @@ h3 {
 	min-width: 300px;
 	max-width: 81vw;
 	transition: width ease-out .4s;
-	border-radius: 0.5rem;
+	border-radius: 15px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
