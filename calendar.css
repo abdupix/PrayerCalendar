@@ -1,0 +1,100 @@
+* {
+	box-sizing: border-box;
+}
+html, body {
+	/* height: 100%; */
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	scroll-behavior: smooth;
+	padding: 0;
+}
+/* general colour variables */
+
+html {
+	font-family: 'Advent Pro', sans-serif;
+	background: #DFDFDF;
+	--grey-white: #dfdfdf;
+	--white: #efefef;
+	--black: #2b2b2b;
+	--blue: #2c3e50;
+	--light-blue: #455E76;
+	--gold: #FFA700;
+}
+body {
+	padding-top: 100px;
+}
+h3 {
+	font-size: 2.5em;
+}
+.card p {
+	font-size: 1.4em;
+}
+/* Float four columns side by side */
+
+.column {
+	float: left;
+	width: 20%;
+	padding: 0 10px;
+}
+/* Remove extra left and right margins, due to padding */
+
+.row {
+	margin: 0 -5px;
+}
+/* Clear floats after the columns */
+
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+/* Responsive columns */
+@media screen and (max-width: 1000px) {
+	.column {
+		width: 50%;
+		display: block;
+		margin-bottom: 20px;
+	}
+}
+@media screen and (max-width: 600px) {
+	.column {
+		width: 100%;
+		display: block;
+		margin-bottom: 20px;
+	}
+}
+/* Style the counter cards */
+
+.card {
+	padding: 10px;
+	text-align: center;
+}
+.nextPrayer {
+	box-shadow: inset 0px 0px 0px 2px var(--gold), 15px 15px 32px rgba(0, 0, 0, 0.1);
+	border-radius: 20px;
+	background-color: var(--white);
+}
+.smallerBox {
+	border-radius: 20px;
+	color: var(--blue);
+	text-align: center;
+	margin: 10px;
+	background: var(--grey-white);
+	box-shadow: inset 15px 15px 32px rgba(0, 0, 0, 0.062)
+}
+.mainBox {
+	background-color: var(--white);
+	padding: 20px;
+	width: 65%;
+	color: var(--blue);
+	box-shadow: 15px 15px 32px rgba(0, 0, 0, 0.062);
+	min-width: 300px;
+	max-width: 81vw;
+	transition: width ease-out .4s;
+	border-radius: 0.5rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+}
