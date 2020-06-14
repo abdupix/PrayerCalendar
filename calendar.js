@@ -23,7 +23,7 @@ var currentDate = function(separator){
 };
 
 //Variables for easier referencing
-let api = 'http://api.aladhan.com/v1/timings/'
+let api = 'https://api.aladhan.com/v1/timings/'
 let date = currentDate('-')
 let latitude = '-45.87416'
 let longitude = '170.50361'
