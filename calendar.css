@@ -32,6 +32,9 @@ html[data-theme='dark'] {
 }
 body {
 	padding-top: 100px;
+	background-image: url(index-main.jpg);
+	background-size: 100%;
+	background-attachment: fixed;
 }
 h3 {
 	font-size: 2.5em;
@@ -177,6 +180,12 @@ label:active:after {
 		transform: translate(-50%, 0%);
 		top: 5%;
 	}
+	.poly{
+		clip-path: polygon(67% 98%, 100% 90%, 100% 100%, 0 100%, 0 90%);
+		background:var(--white);
+		height:100vh;
+		margin-top:-100px;
+	  }
 }
 @media screen and (max-width: 680px) {
 	.mainBox {
@@ -197,4 +206,10 @@ label:active:after {
 		display: block;
 		margin-bottom: 20px;
 	}
+	.poly{
+		clip-path: polygon(0 87%, 100% 92%, 100% 100%, 0% 100%);
+		background:var(--white);
+		height:220vh;
+		margin-top:-100px;
+	  }
 }

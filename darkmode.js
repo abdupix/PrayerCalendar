@@ -1,6 +1,5 @@
 // variable ste
 var checkbox = document.querySelector("input[name=theme]");
-localStorage.setItem("data-theme", "light");
 // if the switch is checkd the dark theme attritube will change to dark and display a warnig
 checkbox.addEventListener("change", function() {
 	if (this.checked) {
@@ -37,6 +36,7 @@ if(localStorage.getItem("data-theme") == "light"){
 }
 if(localStorage.getItem("data-theme") == "dark"){
 	document.documentElement.setAttribute("data-theme", "dark");
+	document.getElementById("switch").checked = true;
 	console.log("night mode hero");
 }
 
