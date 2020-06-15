@@ -148,13 +148,17 @@ label:active:after {
 .poly{
   clip-path: polygon(66% 95%, 100% 88%, 100% 100%, 0 100%, 0 81%);
   background:var(--white);
-  height:100vh;
+  height:103vh;
   margin-top:-100px;
 }
 .content{
   background-color: var(--white);
   text-align: center;
   color: var(--main-text-color);
+}
+.NextPrayerTime{
+	float:left;
+	margin: 0 10px;
 }
 /* Responsive columns */
 @media screen and (max-width: 1340px) {
@@ -163,15 +167,27 @@ label:active:after {
 	}
 }
 @media screen and (max-width: 1100px) {
+	body{
+		background-image: none;
+	}
+	body img{
+		height: 100vh;
+		width: 100%;
+		object-fit: cover;
+		
+	}
 	.column {
 		width: 33.333%;
 		display: block;
-		margin-bottom: 20px;
 	}
-	.column:first-child, .coloumn:nth-child(3) {
+	.column:first-child, .column:nth-child(4) {
 		padding-left: 5px;
 	}
-	.column:last-child {
+	.coloumn:nth-child(4), .column:nth-child(5){
+		
+		margin-bottom:0px;
+	}
+	.column:nth-child(3) {
 		padding-right: 5px;
   }
 

@@ -48,6 +48,10 @@ fetch(`${api}${date}?latitude=${latitude}&longitude=${longitude}&method=${method
 	}
 	if (currentTime > DhuhrTime & currentTime < AsrTime || currentTime == AsrTime) {
 		document.getElementById("AsrPrayer").classList.add("nextPrayer");
+		var nekPrayer = Math.abs(parseInt(currentTime) - parseInt(AsrTime));
+		console.log(parseInt(currentTime));
+		console.log(AsrTime);
+		console.log(nekPrayer);
 	}
 	if (currentTime > AsrTime & currentTime < MaghribTime || currentTime == MaghribTime) {
 		document.getElementById("MaghribPrayer").classList.add("nextPrayer");
@@ -59,3 +63,5 @@ fetch(`${api}${date}?latitude=${latitude}&longitude=${longitude}&method=${method
 		document.getElementById("FajrPrayer").classList.add("nextPrayer");
 	}
 })
+
+//next prayer in:::
