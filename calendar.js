@@ -54,26 +54,33 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
         let MaghribTimeTomorrow = prayerTimes[dd].Maghrib
 		let IshaTimeTomorrow = prayerTimes[dd].Isha  
 		
+        FajrTimeToday = `${FajrTimeToday.substr(0,5)} AM ${FajrTimeToday.substr(6,FajrTimeToday.length)}`
+        DhuhrTimeToday = `${DhuhrTimeToday.substr(0,5)} PM ${DhuhrTimeToday.substr(6,DhuhrTimeToday.length)}`
+        AsrTimeToday = `${AsrTimeToday.substr(0,5)} PM ${AsrTimeToday.substr(6,AsrTimeToday.length)}`
+        MaghribTimeToday = `${MaghribTimeToday.substr(0,5)} PM ${MaghribTimeToday.substr(6,MaghribTimeToday.length)}`
+        IshaTimeToday = `${IshaTimeToday.substr(0,5)} PM ${IshaTimeToday.substr(6,IshaTimeToday.length)}`
+
+        FajrTimeTomorrow = `${FajrTimeTomorrow.substr(0,5)} AM ${FajrTimeTomorrow.substr(6,FajrTimeTomorrow.length)}`
+        DhuhrTimeTomorrow = `${DhuhrTimeTomorrow.substr(0,5)} PM ${DhuhrTimeTomorrow.substr(6,DhuhrTimeTomorrow.length)}`
+        AsrTimeTomorrow = `${AsrTimeTomorrow.substr(0,5)} PM ${AsrTimeTomorrow.substr(6,AsrTimeTomorrow.length)}`
+        MaghribTimeTomorrow = `${MaghribTimeTomorrow.substr(0,5)} PM ${MaghribTimeTomorrow.substr(6,MaghribTimeTomorrow.length)}`
+        IshaTimeTomorrow = `${IshaTimeTomorrow.substr(0,5)} PM ${IshaTimeTomorrow.substr(6,IshaTimeTomorrow.length)}`
+
 		//Appends the fetched data to an element on the page
 		if (currentTime > IshaTimeToday || currentTime < FajrTimeTomorrow || currentTime == FajrTimeTomorrow) {
-			document.getElementById("fajrTime").innerHTML = `${FajrTimeToday}` + " AM"
-			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeToday}` + " PM"
-			document.getElementById("asrTime").innerHTML = `${AsrTimeToday}` + " PM"
-			document.getElementById("maghribTime").innerHTML = `${MaghribTimeToday}` + " PM"
-			document.getElementById("ishaTime").innerHTML = `${IshaTimeToday}` + " PM"
+			document.getElementById("fajrTime").innerHTML = `${FajrTimeToday}`
+			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeToday}`
+			document.getElementById("asrTime").innerHTML = `${AsrTimeToday}`
+			document.getElementById("maghribTime").innerHTML = `${MaghribTimeToday}`
+			document.getElementById("ishaTime").innerHTML = `${IshaTimeToday}`
 		}
 		else {
-			document.getElementById("fajrTime").innerHTML = `${FajrTimeTomorrow}` + " AM"
-			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeTomorrow}` + " PM"
-			document.getElementById("asrTime").innerHTML = `${AsrTimeTomorrow}` + " PM"
-			document.getElementById("maghribTime").innerHTML = `${MaghribTimeTomorrow}` + " PM"
-			document.getElementById("ishaTime").innerHTML = `${IshaTimeTomorrow}` + " PM"
+			document.getElementById("fajrTime").innerHTML = `${FajrTimeTomorrow}`
+			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeTomorrow}`
+			document.getElementById("asrTime").innerHTML = `${AsrTimeTomorrow}`
+			document.getElementById("maghribTime").innerHTML = `${MaghribTimeTomorrow}`
+			document.getElementById("ishaTime").innerHTML = `${IshaTimeTomorrow}`
 		}
-		// document.getElementById("fajrTime").innerHTML = `${d.data.timings.Fajr}` + " AM"
-		// document.getElementById("dhuhrTime").innerHTML = `${d.data.timings.Dhuhr}` + " PM"
-		// document.getElementById("asrTime").innerHTML = `${d.data.timings.Asr}` + " PM"
-		// document.getElementById("maghribTime").innerHTML = `${d.data.timings.Maghrib}` + " PM"
-		// document.getElementById("ishaTime").innerHTML = `${d.data.timings.Isha}` + " PM"
 	}
 	//Prints an error message to the console if the request was unsuccessful or the page doesn't exist
 	else if (d.code == 404) {
