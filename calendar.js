@@ -80,6 +80,14 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
 		console.log("Error! There is a problem with the API. Server returned a status of 404 page not found. PLease reload the page")
 	}
 	
+	var FajrTimeToday = prayerTimes[dd-1].Fajr
+	var DhuhrTimeToday = prayerTimes[dd-1].Dhuhr
+	var AsrTimeToday = prayerTimes[dd-1].Asr
+	var MaghribTimeToday = prayerTimes[dd-1].Maghrib
+	var IshaTimeToday = prayerTimes[dd-1].Isha
+	
+	var FajrTimeTomorrow = prayerTimes[dd].Fajr
+		
 	if (currentTime > FajrTimeToday & currentTime < DhuhrTimeToday || currentTime == DhuhrTimeToday) {
 		document.getElementById("DhuhrPrayer").classList.add("nextPrayer");
 	}
