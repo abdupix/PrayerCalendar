@@ -20,7 +20,7 @@ if(mm < 10)
     mm='0' + mm;
 
 //Variables for easier referencing
-let api = 'http://api.aladhan.com/v1/calendar'
+let api = 'https://api.aladhan.com/v1/calendar'
 let latitude = '-45.87416'
 let longitude = '170.50361'
 let method = 2
