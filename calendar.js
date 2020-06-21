@@ -68,18 +68,18 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
 
 		//Appends the fetched data to an element on the page
 		if (currentTime > (IshaTimeToday.substr(0,5)) && currentTime < '00:00') {
-			document.getElementById("fajrTime").innerHTML = `${FajrTimeToday}`
-			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeToday}`
-			document.getElementById("asrTime").innerHTML = `${AsrTimeToday}`
-			document.getElementById("maghribTime").innerHTML = `${MaghribTimeToday}`
-			document.getElementById("ishaTime").innerHTML = `${IshaTimeToday}`
-		}
-		else {
 			document.getElementById("fajrTime").innerHTML = `${FajrTimeTomorrow}`
 			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeTomorrow}`
 			document.getElementById("asrTime").innerHTML = `${AsrTimeTomorrow}`
 			document.getElementById("maghribTime").innerHTML = `${MaghribTimeTomorrow}`
 			document.getElementById("ishaTime").innerHTML = `${IshaTimeTomorrow}`
+		}
+		else {
+			document.getElementById("fajrTime").innerHTML = `${FajrTimeToday}`
+			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeToday}`
+			document.getElementById("asrTime").innerHTML = `${AsrTimeToday}`
+			document.getElementById("maghribTime").innerHTML = `${MaghribTimeToday}`
+			document.getElementById("ishaTime").innerHTML = `${IshaTimeToday}`
 		}
 	}
 	//Prints an error message to the console if the request was unsuccessful or the page doesn't exist
