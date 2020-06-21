@@ -67,7 +67,7 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
         IshaTimeTomorrow = `${IshaTimeTomorrow.substr(0,5)} PM ${IshaTimeTomorrow.substr(6,IshaTimeTomorrow.length)}`
 
 		//Appends the fetched data to an element on the page
-		if (currentTime > (IshaTimeToday.substr(0,5)) && currentTime < '00:00') {
+		if (currentTime > (IshaTimeToday.substr(0,5)) && currentTime < '23:59') {
 			document.getElementById("fajrTime").innerHTML = `${FajrTimeTomorrow}`
 			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeTomorrow}`
 			document.getElementById("asrTime").innerHTML = `${AsrTimeTomorrow}`
