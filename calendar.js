@@ -25,6 +25,26 @@ let latitude = '-45.87416'
 let longitude = '170.50361'
 let method = 2
 
+var displayData = function(
+	FajrTimeToday,DhuhrTimeToday,AsrTimeToday,MaghribTimeToday,IshaTimeToday,
+	FajrTimeTomorrow,DhuhrTimeTomorrow,AsrTimeTomorrow,MaghribTimeTomorrow,IshaTimeTomorrow) {
+	//Appends the fetched data to an element on the page
+	if (currentTime > (IshaTimeToday.substr(0,5)) && currentTime < '23:59') {
+		document.getElementById("fajrTime").innerHTML = `${FajrTimeTomorrow}`
+		document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeTomorrow}`
+		document.getElementById("asrTime").innerHTML = `${AsrTimeTomorrow}`
+		document.getElementById("maghribTime").innerHTML = `${MaghribTimeTomorrow}`
+		document.getElementById("ishaTime").innerHTML = `${IshaTimeTomorrow}`
+	}
+	else {
+		document.getElementById("fajrTime").innerHTML = `${FajrTimeToday}`
+		document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeToday}`
+		document.getElementById("asrTime").innerHTML = `${AsrTimeToday}`
+		document.getElementById("maghribTime").innerHTML = `${MaghribTimeToday}`
+		document.getElementById("ishaTime").innerHTML = `${IshaTimeToday}`
+	}
+};
+
 //Fetch used to query the API for the prayer times
 fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${mm}&year=${yyyy}`)
 .then(res => res.json())
@@ -67,6 +87,10 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
 			AsrTimeTomorrow = `${AsrTimeTomorrow.substr(0,5)} PM ${AsrTimeTomorrow.substr(6,AsrTimeTomorrow.length)}`
 			MaghribTimeTomorrow = `${MaghribTimeTomorrow.substr(0,5)} PM ${MaghribTimeTomorrow.substr(6,MaghribTimeTomorrow.length)}`
 			IshaTimeTomorrow = `${IshaTimeTomorrow.substr(0,5)} PM ${IshaTimeTomorrow.substr(6,IshaTimeTomorrow.length)}`
+
+			displayData(
+				FajrTimeToday,DhuhrTimeToday,AsrTimeToday,MaghribTimeToday,IshaTimeToday,
+				FajrTimeTomorrow,DhuhrTimeTomorrow,AsrTimeTomorrow,MaghribTimeTomorrow,IshaTimeTomorrow)
 		}
 		else {
 			let FajrTimeToday = prayerTimes[dd-1].Fajr
@@ -110,28 +134,16 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
 					AsrTimeTomorrow = `${AsrTimeTomorrow.substr(0,5)} PM ${AsrTimeTomorrow.substr(6,AsrTimeTomorrow.length)}`
 					MaghribTimeTomorrow = `${MaghribTimeTomorrow.substr(0,5)} PM ${MaghribTimeTomorrow.substr(6,MaghribTimeTomorrow.length)}`
 					IshaTimeTomorrow = `${IshaTimeTomorrow.substr(0,5)} PM ${IshaTimeTomorrow.substr(6,IshaTimeTomorrow.length)}`
+
+					displayData(
+						FajrTimeToday,DhuhrTimeToday,AsrTimeToday,MaghribTimeToday,IshaTimeToday,
+						FajrTimeTomorrow,DhuhrTimeTomorrow,AsrTimeTomorrow,MaghribTimeTomorrow,IshaTimeTomorrow)
 				}
 				//Prints an error message to the console if the request was unsuccessful or the page doesn't exist
 				else if (d.code == 404) {
 					console.log("Error! There is a problem with the API. Server returned a status of 404 page not found.")
 				}
 			}) 
-		}
-
-		//Appends the fetched data to an element on the page
-		if (currentTime > (IshaTimeToday.substr(0,5)) && currentTime < '23:59') {
-			document.getElementById("fajrTime").innerHTML = `${FajrTimeTomorrow}`
-			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeTomorrow}`
-			document.getElementById("asrTime").innerHTML = `${AsrTimeTomorrow}`
-			document.getElementById("maghribTime").innerHTML = `${MaghribTimeTomorrow}`
-			document.getElementById("ishaTime").innerHTML = `${IshaTimeTomorrow}`
-		}
-		else {
-			document.getElementById("fajrTime").innerHTML = `${FajrTimeToday}`
-			document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeToday}`
-			document.getElementById("asrTime").innerHTML = `${AsrTimeToday}`
-			document.getElementById("maghribTime").innerHTML = `${MaghribTimeToday}`
-			document.getElementById("ishaTime").innerHTML = `${IshaTimeToday}`
 		}
 	}
 	//Prints an error message to the console if the request was unsuccessful or the page doesn't exist
