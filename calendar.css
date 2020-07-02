@@ -166,7 +166,7 @@ label:active:after {
 		width: 90%;
 	}
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1200px) {
 	body{
 		background-image: none;
 	}
