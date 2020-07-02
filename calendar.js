@@ -81,7 +81,7 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
 			let IshaTimeTomorrow = prayerTimes[dd].Isha        
 
 			FajrTimeToday = `${FajrTimeToday.substr(0,5)} AM`
-			console.log(${FajrTimeToday.substr(6,FajrTimeToday.length)});
+// 			console.log(${FajrTimeToday.substr(6,FajrTimeToday.length)});
 			SunriseToday = `${SunriseToday.substr(0,5)} AM ${SunriseToday.substr(6,SunriseToday.length)}`
 			DhuhrTimeToday = `${DhuhrTimeToday.substr(0,5)} PM ${DhuhrTimeToday.substr(6,DhuhrTimeToday.length)}`
 			AsrTimeToday = `${AsrTimeToday.substr(0,5)} PM ${AsrTimeToday.substr(6,AsrTimeToday.length)}`
