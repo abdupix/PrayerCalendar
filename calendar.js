@@ -81,20 +81,30 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
 			let IshaTimeTomorrow = prayerTimes[dd].Isha        
 
 			FajrTimeToday = `${FajrTimeToday.substr(0,5)} AM`
-// 			console.log(${FajrTimeToday.substr(6,FajrTimeToday.length)});
-			SunriseToday = `${SunriseToday.substr(0,5)} AM ${SunriseToday.substr(6,SunriseToday.length)}`
-			DhuhrTimeToday = `${DhuhrTimeToday.substr(0,5)} PM ${DhuhrTimeToday.substr(6,DhuhrTimeToday.length)}`
-			AsrTimeToday = `${AsrTimeToday.substr(0,5)} PM ${AsrTimeToday.substr(6,AsrTimeToday.length)}`
-			MaghribTimeToday = `${MaghribTimeToday.substr(0,5)} PM ${MaghribTimeToday.substr(6,MaghribTimeToday.length)}`
-			IshaTimeToday = `${IshaTimeToday.substr(0,5)} PM ${IshaTimeToday.substr(6,IshaTimeToday.length)}`
+// 			${FajrTimeToday.substr(6,FajrTimeToday.length)}
+			SunriseToday = `${SunriseToday.substr(0,5)} AM`
+			 ${SunriseToday.substr(6,SunriseToday.length)}
+// 			DhuhrTimeToday = `${DhuhrTimeToday.substr(0,5)} PM`
+			 ${DhuhrTimeToday.substr(6,DhuhrTimeToday.length)}
+			AsrTimeToday = `${AsrTimeToday.substr(0,5)} PM`
+// 			 ${AsrTimeToday.substr(6,AsrTimeToday.length)}
+			MaghribTimeToday = `${MaghribTimeToday.substr(0,5)} PM`
+// 			 ${MaghribTimeToday.substr(6,MaghribTimeToday.length)}
+			IshaTimeToday = `${IshaTimeToday.substr(0,5)} PM`
+// 			 ${IshaTimeToday.substr(6,IshaTimeToday.length)}
 			
-			FajrTimeTomorrow = `${FajrTimeTomorrow.substr(0,5)} AM ${FajrTimeTomorrow.substr(6,FajrTimeTomorrow.length)}`
-			SunriseTomorrow = `${SunriseTomorrow.substr(0,5)} AM ${SunriseTomorrow.substr(6,SunriseTomorrow.length)}`
-			DhuhrTimeTomorrow = `${DhuhrTimeTomorrow.substr(0,5)} PM ${DhuhrTimeTomorrow.substr(6,DhuhrTimeTomorrow.length)}`
-			AsrTimeTomorrow = `${AsrTimeTomorrow.substr(0,5)} PM ${AsrTimeTomorrow.substr(6,AsrTimeTomorrow.length)}`
-			MaghribTimeTomorrow = `${MaghribTimeTomorrow.substr(0,5)} PM ${MaghribTimeTomorrow.substr(6,MaghribTimeTomorrow.length)}`
-			IshaTimeTomorrow = `${IshaTimeTomorrow.substr(0,5)} PM ${IshaTimeTomorrow.substr(6,IshaTimeTomorrow.length)}`
-
+			FajrTimeTomorrow = `${FajrTimeTomorrow.substr(0,5)} AM`
+// 			 ${FajrTimeTomorrow.substr(6,FajrTimeTomorrow.length)}
+			SunriseTomorrow = `${SunriseTomorrow.substr(0,5)} AM`
+// 			 ${SunriseTomorrow.substr(6,SunriseTomorrow.length)}
+			DhuhrTimeTomorrow = `${DhuhrTimeTomorrow.substr(0,5)} PM`
+// 			 ${DhuhrTimeTomorrow.substr(6,DhuhrTimeTomorrow.length)}
+			AsrTimeTomorrow = `${AsrTimeTomorrow.substr(0,5)} PM`
+// 			 ${AsrTimeTomorrow.substr(6,AsrTimeTomorrow.length)}
+			MaghribTimeTomorrow = `${MaghribTimeTomorrow.substr(0,5)} PM`
+// 			 ${MaghribTimeTomorrow.substr(6,MaghribTimeTomorrow.length)}
+			IshaTimeTomorrow = `${IshaTimeTomorrow.substr(0,5)} PM`
+//  			 ${IshaTimeTomorrow.substr(6,IshaTimeTomorrow.length)}
 			displayData(
 				FajrTimeToday,SunriseToday,DhuhrTimeToday,AsrTimeToday,MaghribTimeToday,IshaTimeToday,
 				FajrTimeTomorrow,SunriseTomorrow,DhuhrTimeTomorrow,AsrTimeTomorrow,MaghribTimeTomorrow,IshaTimeTomorrow)
@@ -107,13 +117,18 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
 			let MaghribTimeToday = prayerTimes[dd-1].Maghrib
 			let IshaTimeToday = prayerTimes[dd-1].Isha
 
-			FajrTimeToday = `${FajrTimeToday.substr(0,5)} AM${FajrTimeToday.substr(6,FajrTimeToday.length)}`
-			SunriseToday = `${SunriseToday.substr(0,5)} AM ${SunriseToday.substr(6,SunriseToday.length)}`
-			DhuhrTimeToday = `${DhuhrTimeToday.substr(0,5)} PM ${DhuhrTimeToday.substr(6,DhuhrTimeToday.length)}`
-			AsrTimeToday = `${AsrTimeToday.substr(0,5)} PM ${AsrTimeToday.substr(6,AsrTimeToday.length)}`
-			MaghribTimeToday = `${MaghribTimeToday.substr(0,5)} PM ${MaghribTimeToday.substr(6,MaghribTimeToday.length)}`
-			IshaTimeToday = `${IshaTimeToday.substr(0,5)} PM ${IshaTimeToday.substr(6,IshaTimeToday.length)}`
-			
+			FajrTimeToday = `${FajrTimeToday.substr(0,5)} AM`
+// 			${FajrTimeToday.substr(6,FajrTimeToday.length)}
+			SunriseToday = `${SunriseToday.substr(0,5)} AM`
+// 			 ${SunriseToday.substr(6,SunriseToday.length)}
+			DhuhrTimeToday = `${DhuhrTimeToday.substr(0,5)} PM`
+// 			 ${DhuhrTimeToday.substr(6,DhuhrTimeToday.length)}
+			AsrTimeToday = `${AsrTimeToday.substr(0,5)} PM`
+// 			 ${AsrTimeToday.substr(6,AsrTimeToday.length)}
+			MaghribTimeToday = `${MaghribTimeToday.substr(0,5)} PM`
+// 			 ${MaghribTimeToday.substr(6,MaghribTimeToday.length)}
+			IshaTimeToday = `${IshaTimeToday.substr(0,5)} PM`
+// 			 ${IshaTimeToday.substr(6,IshaTimeToday.length)}
 			//Fetch used to query the API for the prayer times
 			fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month=${mmTomorrow}&year=${yyyyTomorrow}`)
 			.then(res => res.json())
@@ -139,13 +154,18 @@ fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&month
 					let MaghribTimeTomorrow = newMonthPrayerTimes[ddTomorrow-1].Maghrib
 					let IshaTimeTomorrow = newMonthPrayerTimes[ddTomorrow-1].Isha        
 
-					FajrTimeTomorrow = `${FajrTimeTomorrow.substr(0,5)} AM${FajrTimeTomorrow.substr(6,FajrTimeTomorrow.length)}`
-					SunriseTomorrow = `${SunriseTomorrow.substr(0,5)} AM ${SunriseTomorrow.substr(6,SunriseTomorrow.length)}`
-					DhuhrTimeTomorrow = `${DhuhrTimeTomorrow.substr(0,5)} PM ${DhuhrTimeTomorrow.substr(6,DhuhrTimeTomorrow.length)}`
-					AsrTimeTomorrow = `${AsrTimeTomorrow.substr(0,5)} PM ${AsrTimeTomorrow.substr(6,AsrTimeTomorrow.length)}`
-					MaghribTimeTomorrow = `${MaghribTimeTomorrow.substr(0,5)} PM ${MaghribTimeTomorrow.substr(6,MaghribTimeTomorrow.length)}`
-					IshaTimeTomorrow = `${IshaTimeTomorrow.substr(0,5)} PM ${IshaTimeTomorrow.substr(6,IshaTimeTomorrow.length)}`
-
+					FajrTimeTomorrow = `${FajrTimeTomorrow.substr(0,5)} AM`
+// 					${FajrTimeTomorrow.substr(6,FajrTimeTomorrow.length)}
+					SunriseTomorrow = `${SunriseTomorrow.substr(0,5)} AM`
+// 					 ${SunriseTomorrow.substr(6,SunriseTomorrow.length)}
+					DhuhrTimeTomorrow = `${DhuhrTimeTomorrow.substr(0,5)} PM`
+// 					 ${DhuhrTimeTomorrow.substr(6,DhuhrTimeTomorrow.length)}
+					AsrTimeTomorrow = `${AsrTimeTomorrow.substr(0,5)} PM`
+// 					 ${AsrTimeTomorrow.substr(6,AsrTimeTomorrow.length)}
+					MaghribTimeTomorrow = `${MaghribTimeTomorrow.substr(0,5)} PM`
+// 					 ${MaghribTimeTomorrow.substr(6,MaghribTimeTomorrow.length)}
+					IshaTimeTomorrow = `${IshaTimeTomorrow.substr(0,5)} PM`
+// 					 ${IshaTimeTomorrow.substr(6,IshaTimeTomorrow.length)}
 					displayData(
 						FajrTimeToday,SunriseToday,DhuhrTimeToday,AsrTimeToday,MaghribTimeToday,IshaTimeToday,
 						FajrTimeTomorrow,SunriseTomorrow,DhuhrTimeTomorrow,AsrTimeTomorrow,MaghribTimeTomorrow,IshaTimeTomorrow)
