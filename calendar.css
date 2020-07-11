@@ -230,6 +230,7 @@ label:active:after {
 		margin-top:0px;
 	  }
 }
+<<<<<<< HEAD
 .table4NextMonth{
 background-color: var(--white);
 padding-top:40px;
@@ -273,3 +274,5 @@ th {
 	color:var(--black)
 }
 
+=======
+>>>>>>> 78d271c017a50ef4f7825b925ae10259c2b7b59b
