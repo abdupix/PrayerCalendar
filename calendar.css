@@ -260,6 +260,7 @@ table {
 	margin:auto;
 	border:20px solid var(--grey-white);
 	border-radius:15px;
+	background:var(--grey-white);
 }
 
 th,
