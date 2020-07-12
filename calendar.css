@@ -287,5 +287,6 @@ button{
     transition: .4s;
 	padding:15px;
 	background:var(--blue);
+	border-radius:7px;
 	
 }
