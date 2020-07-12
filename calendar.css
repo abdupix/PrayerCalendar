@@ -241,6 +241,10 @@ label:active:after {
 		height:calc(20vh + 1350px);
 		margin-top:0px;
 	  }
+
+	  .table {
+		  overflow-x: auto;
+	  }
 }
 
 .table4NextMonth{
@@ -256,10 +260,6 @@ padding-top:40px;
 }
 .table1 td, tr{
 	border-bottom: 2px solid var(--blue);
-}
-
-.table {
-	overflow-x: auto;
 }
 
 table {
