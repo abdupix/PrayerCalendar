@@ -340,8 +340,12 @@ function displayTableWeekly(weeks,length) {
                 items[8].append(weeks[i][8])
 
                 if (items[0].innerText !== '') {
+                    
                     rows[count] = document.createElement('tr')
-                    rows[count].className = 'list-item'
+                    
+                    if (items[1].innerText.substr(0,2) == (dd-1))
+                    // rows[count].className = 'tableContainer'
+                    rows[count].className = 'today'
                 }
 
                 items.forEach(item => {     
@@ -431,8 +435,11 @@ function displayTableMonthly(months,mm) {
         items[8].append(months[mm-1][i][8])
 
         if (items[0].innerText !== '') {
+            
             rows[count] = document.createElement('tr')
-            rows[count].className = 'list-item'
+            
+            if (items[1].innerText.substr(0,2) == dd-1)
+                rows[count].className = 'today'
         }
 
         items.forEach(item => {     
