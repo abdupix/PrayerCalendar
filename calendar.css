@@ -280,3 +280,9 @@ th {
 	background:rgba(var(--alsogold), 0.7);
 	color:var(--black)
 }
+button{
+	background: var(--white);
+    color: var(--gold);
+    box-shadow: inset 0px 0px 0px 2px var(--gold), 15px 15px 32px rgba(0, 0, 0, 0.1);
+    transition: .4s;
+}
