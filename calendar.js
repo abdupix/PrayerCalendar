@@ -293,8 +293,8 @@ function createWeeksData(data,start) {
             weeks[count][0] = data[i].date.gregorian.weekday.en
             weeks[count][1] = data[i].date.readable
             weeks[count][2] = data[i].date.hijri.day + ' ' + data[i].date.hijri.month.en + ' ' + data[i].date.hijri.year
-            weeks[count][3] = formatText(data[i].timings.Sunrise)
-            weeks[count][4] = formatText(data[i].timings.Fajr)
+            weeks[count][3] = formatText(data[i].timings.Fajr)
+            weeks[count][4] = formatText(data[i].timings.Sunrise)
             weeks[count][5] = formatText(data[i].timings.Dhuhr)
             weeks[count][6] = formatText(data[i].timings.Asr)
             weeks[count][7] = formatText(data[i].timings.Maghrib)
@@ -386,8 +386,8 @@ function createMonthsData(d) {
             months[h-1][i][0] = d.data[h][i].date.gregorian.weekday.en
             months[h-1][i][1] = d.data[h][i].date.readable
             months[h-1][i][2] = d.data[h][i].date.hijri.day + ' ' + d.data[h][i].date.hijri.month.en + ' ' + d.data[h][i].date.hijri.year
-            months[h-1][i][3] = formatText(d.data[h][i].timings.Sunrise)
-            months[h-1][i][4] = formatText(d.data[h][i].timings.Fajr)
+            months[h-1][i][3] = formatText(d.data[h][i].timings.Fajr)
+            months[h-1][i][4] = formatText(d.data[h][i].timings.Sunrise)
             months[h-1][i][5] = formatText(d.data[h][i].timings.Dhuhr)
             months[h-1][i][6] = formatText(d.data[h][i].timings.Asr)
             months[h-1][i][7] = formatText(d.data[h][i].timings.Maghrib)
