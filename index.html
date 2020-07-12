@@ -5,7 +5,6 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<link href="calendar.css" rel="stylesheet">
 	<title>Dunedin Prayer</title>
-	<script src="calendar.js">
 	</script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-169919625-1"></script>
@@ -67,6 +66,38 @@
 	</div>
 	<div class="poly">
 	</div>
+
+	<div class = "placeholder-comment">
+		<button id = "weekly">Weekly</button>
+		<button id = "monthly">Monthly</button>
+		<button id = "yearly">Yearly</button>
+	</div>
+	<br>
+	<div class = "placeholder-comment">
+		<button id = "previous">Previous</button>
+		<button id = "reset">Reset</button>
+		<button id = "next">Next</button>
+	</div>
+	<br>
+	<table>
+		<thead>
+			<tr class = "list-item">
+				<th>Weekday</th>
+				<th>Date (English)</th>
+				<th>Date (Arabic)</th>
+				<th>Fajr</th>
+				<th>Sunrise</th>
+				<th>Zhuhr</th>
+				<th>Asr</th>
+				<th>Maghrib</th>
+				<th>Isha</th>
+			</tr>
+		</thead>
+		<tbody id = "tableDisplay">
+			<tr></tr>
+		</tbody>
+	</table>
+
 <!--
 	<div class="table4NextMonth">
 		<div class="tableContainer">
@@ -149,42 +180,14 @@
 			</tbody>
 			
 			<aside>
-			<div class = "placeholder-comment">
-                    <button id = "weekly">Weekly</button>
-                    <button id = "monthly">Monthly</button>
-                    <button id = "yearly">Yearly</button>
-                </div>
-                <br>
-                <div class = "placeholder-comment">
-                    <button id = "previous">Previous</button>
-                    <button id = "reset">Reset</button>
-                    <button id = "next">Next</button>
-                </div>
-                <br>
-                <table>
-                    <thead>
-                        <tr class = "list-item">
-                            <th>Weekday</th>
-                            <th>Date (English)</th>
-                            <th>Date (Arabic)</th>
-                            <th>Fajr</th>
-                            <th>Sunrise</th>
-                            <th>Zhuhr</th>
-                            <th>Asr</th>
-                            <th>Maghrib</th>
-                            <th>Isha</th>
-                        </tr>
-                    </thead>
-                    <tbody id = "tableDisplay">                        
-                    </tbody>
-                </table>
+			
 			</aside>
 		</table>
 	</div></div>
 -->
 	<div class="content"><br><br><strong>Powered by Entivik</strong><br><br> Made possible by the help of <strong>Muhammed Faizel Adam</strong> and <strong>Abdurrahman Obaidullah</strong><br><br></div>
 	
-	<script src="darkmode.js">
-	</script>
+	<script src="darkmode.js"></script>
+	<script src="calendar.js"></script>
 </body>
 </html>
