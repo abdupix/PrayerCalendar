@@ -551,8 +551,9 @@ function resetMonth() {
 
     disableNavButtons()
 
-    tableButtons[0].disabled = false
-    tableButtons[1].disabled = true
+    tableButtons[0].disabled = true
+    tableButtons[1].disabled = false
+    tableButtons[2].disabled = true
 
     displayTableWeekly(weeks,length)
 };
