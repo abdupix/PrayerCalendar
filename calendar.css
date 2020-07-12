@@ -285,4 +285,7 @@ button{
     color: var(--gold);
     box-shadow: inset 0px 0px 0px 2px var(--gold), 15px 15px 32px rgba(0, 0, 0, 0.1);
     transition: .4s;
+	padding:15px;
+	background:var(--blue);
+	
 }
