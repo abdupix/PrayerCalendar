@@ -4,6 +4,8 @@ today.setDate(today.getDate())
 let tomorrow = new Date();
 tomorrow.setDate(today.getDate()+1)
 
+var dateToday = today.toDateString().substr(8,2) + ' ' + today.toDateString().substr(4,3) + ' ' + today.toDateString().substr(11,4)
+
 var dd = today.getDate();
 var mm = today.getMonth()+1; //Adds 1 to the month because it is 0 based
 var yyyy = today.getFullYear();
@@ -343,9 +345,8 @@ function displayTableWeekly(weeks,length) {
                     
                     rows[count] = document.createElement('tr')
                     
-                    if (items[1].innerText.substr(0,2) == (dd-1))
-                    // rows[count].className = 'tableContainer'
-                    rows[count].className = 'today'
+                    if (items[1].innerText == dateToday)
+                        rows[count].className = 'today'
                 }
 
                 items.forEach(item => {     
@@ -438,7 +439,7 @@ function displayTableMonthly(months,mm) {
             
             rows[count] = document.createElement('tr')
             
-            if (items[1].innerText.substr(0,2) == dd-1)
+            if (items[1].innerText == dateToday)
                 rows[count].className = 'today'
         }
 
@@ -489,7 +490,7 @@ function nextMonth() {
             else {
                 displayTableYearly(year)
             }
-        }, 2000)
+        }, 2500)
     }
     else {
         if (currentTable == 'weekly') {
@@ -528,14 +529,13 @@ function previousMonth() {
             else {
                 displayTableYearly(year)
             }
-        }, 2000)
+        }, 2500)
     }
     else {
         if (currentTable == 'weekly') {
             displayTableWeekly(weeks,length)
         }
         else if (currentTable == 'monthly') {
-            console.log(counter)
             displayTableMonthly(months,counter)
         }
         else {

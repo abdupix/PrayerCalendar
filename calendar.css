@@ -78,7 +78,10 @@ h3 {
 .today {
 	box-shadow: inset 0px 0px 0px 2px greenyellow;
 	border-radius: 100%;
-	color: blue;
+}
+
+.today td {
+	background: rgb(143, 204, 245);
 }
 
 .nextPrayer {
