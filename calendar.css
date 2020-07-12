@@ -14,7 +14,7 @@ html, body {
 
 html {
 	font-family: 'Advent Pro', sans-serif;
-	background: var(--grey-white);
+	background: var(--white);
 	--grey-white: #dfdfdf;
 	--white: #efefef;
 	--black: #2b2b2b;
@@ -22,6 +22,7 @@ html {
 	--light-blue: #455E76;
 	--gold: rgb(255, 167, 0);
 	--alsogold: 255, 167, 0;
+	--gold2:rgb(255, 167, 0);
 }
 html[data-theme='dark'] {
 	--bg-main: linear-gradient(45deg, #1C2437, #455880);
@@ -30,6 +31,7 @@ html[data-theme='dark'] {
 	/* --gold:#2c3e50; */
 	--main-text-color: #B5B5B5;
 	--white: #434343;
+	--gold2:#2c3e50;
 }
 body {
 	padding-top: 100px;
@@ -261,7 +263,11 @@ table {
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 	margin:auto;
+	margin-bottom:20px;
 	border:20px solid var(--grey-white);
+	border-radius:15px;
+	background:var(--grey-white);
+	
 }
 
 th,
@@ -278,4 +284,19 @@ th {
 .todayTimes td{
 	background:rgba(var(--alsogold), 0.7);
 	color:var(--black)
+}
+button{
+	background: var(--white);
+    color: var(--gold2);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+    transition: .4s;
+	padding:15px;
+	background:var(--blue);
+	border-radius:7px;
+	border: 2px solid var(--gold2);
+	
+	
+}
+button:disabled{
+	opacity:0.5;
 }
