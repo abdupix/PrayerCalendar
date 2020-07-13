@@ -242,9 +242,47 @@ label:active:after {
 		margin-top:0px;
 	  }
 
-	  .table {
-		  overflow-x: auto;
-	  }
+	.table {
+		overflow-x: auto;
+		width: 100%;
+	}
+
+	  .list-item
+    {
+        display: none;
+    }
+    
+    table tr 
+    {
+      border-bottom: 1px solid rgb(0, 0, 0);
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td 
+    {
+      border-bottom: 1px solid rgb(0, 0, 0);
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before 
+    {
+      float: left;
+      font-weight: bold;
+    }
+    
+    td:nth-of-type(1):before { content: "Weekday"; }
+	td:nth-of-type(2):before { content: "Date (English)"; }
+	td:nth-of-type(3):before { content: "Date (Arabic)"; }
+	td:nth-of-type(4):before { content: "Fajr"; }
+	td:nth-of-type(5):before { content: "Sunrise"; }
+	td:nth-of-type(6):before { content: "Zhuhr"; }
+	td:nth-of-type(7):before { content: "Asr"; }
+	td:nth-of-type(8):before { content: "Maghrib"; }
+	td:nth-of-type(9):before { content: "Isha"; }
+	
 }
 
 .table4NextMonth{
@@ -263,7 +301,7 @@ padding-top:40px;
 }
 
 table {
-	max-width:100vw;
+	width: 100%;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
