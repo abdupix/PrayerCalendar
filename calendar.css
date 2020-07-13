@@ -77,6 +77,18 @@ h3 {
 	text-align: center;
 }
 
+.buttons-container {
+	width: 350px;
+	/* padding: 10px; */
+	position: relative;
+	left: 35%;
+}
+
+.buttons {
+	height: auto;
+	width: 100px;
+}
+
 .today {
 	box-shadow: inset 0px 0px 0px 2px greenyellow;
 	border-radius: 100%;
@@ -240,7 +252,12 @@ label:active:after {
 		background:var(--white);
 		height:calc(20vh + 1350px);
 		margin-top:0px;
-	  }
+	}
+
+	.buttons-container {
+		position: relative;
+		left: 28%;
+	}
 
 	.table {
 		overflow-x: auto;
@@ -283,6 +300,55 @@ label:active:after {
 	td:nth-of-type(8):before { content: "Maghrib"; }
 	td:nth-of-type(9):before { content: "Isha"; }
 	
+}
+
+@media screen and (max-width: 620px) {
+	.buttons-container {
+		position: relative;
+		left: 22.5%;
+	}
+}
+
+@media screen and (max-width: 512px) {
+	.buttons-container {
+		position: relative;
+		left: 20%;
+	}
+}
+
+@media screen and (max-width: 440px) {
+	.buttons-container {
+		position: relative;
+		left: 15%;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.buttons-container {
+		position: relative;
+		left: 10%;
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.buttons-container {
+		position: relative;
+		left: 15%;
+	}
+}
+
+@media screen and (max-width: 325px) {
+	.buttons-container {
+		position: relative;
+		left: 5px;
+	}
+}
+
+@media screen and (max-width: 300px) {
+	.buttons-container {
+		position: relative;
+		left: 0px;
+	}
 }
 
 .table4NextMonth{
