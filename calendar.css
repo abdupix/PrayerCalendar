@@ -58,7 +58,7 @@ h3 {
 .column:last-child {
 	padding-right: 0px;
 }
-/* Remove extra left and right margins, due to padding */
+/* Remove extra left and right margins, due to padding. */
 
 .row {
 	margin: 0 -5px;
