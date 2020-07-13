@@ -14,7 +14,7 @@ html, body {
 
 html {
 	font-family: 'Advent Pro', sans-serif;
-	background: var(--white);
+	background: var(--grey-white);
 	--grey-white: #dfdfdf;
 	--white: #efefef;
 	--black: #2b2b2b;
@@ -345,3 +345,7 @@ button{
 button:disabled{
 	opacity:0.5;
 }
+@media screen and (max-width: 680px) {
+	table{
+		width:100%;
+	}
