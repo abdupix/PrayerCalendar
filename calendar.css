@@ -95,7 +95,8 @@ h3 {
 }
 
 .today td {
-	background: rgb(143, 204, 245);
+	background: rgba(var(--gold), 0.7);
+	color: var(--blue);
 }
 
 .nextPrayer {
