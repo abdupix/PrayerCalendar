@@ -95,7 +95,7 @@ h3 {
 }
 
 .today td {
-	background: rgba(var(--gold), 0.7);
+	background: rgba(var(--alsogold), 0.7);
 	color: var(--blue);
 }
 
