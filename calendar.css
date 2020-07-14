@@ -19,6 +19,7 @@ html {
 	--white: #efefef;
 	--black: #2b2b2b;
 	--blue: #2c3e50;
+	--alwaysblue: #2c3e50;
 	--light-blue: #455E76;
 	--gold: rgb(255, 167, 0);
 	--alsogold: 255, 167, 0;
@@ -96,7 +97,7 @@ h3 {
 
 .today td {
 	background: rgba(var(--alsogold), 0.7);
-	color: var(--blue);
+	color: var(--alwaysblue);
 }
 
 .nextPrayer {
