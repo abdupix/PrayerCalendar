@@ -96,6 +96,7 @@ h3 {
 .today td {
 	background: rgba(var(--alsogold), 1);
 	color: var(--alwaysblue);
+	font-weight: bold;
 }
 .nextPrayer {
 	box-shadow: inset 0px 0px 0px 2px var(--gold), 15px 15px 32px rgba(0, 0, 0, 0.1);
