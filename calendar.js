@@ -441,6 +441,7 @@ function displayTableMonthly(months,mm) {
             
             if (items[1].innerText == dateToday)
                 rows[count].className = 'today'
+		rows[count].setAttribute("id", "todayScroll")
         }
 
         items.forEach(item => {     
