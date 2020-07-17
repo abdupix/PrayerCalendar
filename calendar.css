@@ -114,6 +114,7 @@ h3 {
 .mainBox {
 	background-color: var(--white);
 	padding: 15px;
+	padding-bottom:10px;
 	width: 85%;
 	color: var(--blue);
 	box-shadow: 15px 15px 32px rgba(0, 0, 0, 0.062);
@@ -437,4 +438,24 @@ button {
 	table {
 		width: 100%;
 	}
+}
+.select-css{
+	color: var(--blue);
+    background: var(--grey-white);
+    outline: none;
+    padding-left: 15px;
+    height: 40px;
+    border: 1px solid var(--gold);
+	border-radius: 10px;
+}
+.LocationMode{
+	padding-left:10px;
+	margin-top:-18px;
+	font-weight: bold;
+    
+}
+.LocationMode select{
+	box-shadow: 15px 15px 32px rgba(0, 0, 0, 0.1);
+	min-width:20%;
+	text-align-last:center;
 }

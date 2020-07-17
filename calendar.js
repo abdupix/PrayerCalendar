@@ -62,12 +62,38 @@ let IshaTimeToday = ''
 			
 //Variables for easier referencing
 let api = 'https://api.aladhan.com/v1/calendar'
-let latitude = '-45.87416'
-let longitude = '170.50361'
+let latitude = '-45.87416';
+let longitude = '170.50361';
+ 
 let method = 2
 let month = mm
 
+function pickLocation(){
+
+    var location = document.getElementById("mySelect").value;
+    if (location == "Dunedin"){
+        let latitude = '-45.87416';
+        let longitude = '170.50361';
+        // alert(latitude);
+        // alert(location);
+    }
+    else if (location == "Auckland"){
+        let latitude = '-36.8485';
+        let longitude = '174.7633';
+        // alert(latitude);
+        // alert(location);
+
+    }
+    
+
+    fetchData(api,latitude,longitude,method,mm,yyyy);
+    return longitude,latitude
+}
+
+
+
 function fetchData(api,latitude,longitude,method,month,yyyy) {
+ 
 
     //Fetch used to query the API for the prayer times
     fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&year=${yyyy}&annual=true`)
@@ -84,6 +110,7 @@ function fetchData(api,latitude,longitude,method,month,yyyy) {
             console.log("Error! The server returned a status of 404 page not found. Could not get this month's information")
         }
     })
+    
 }
 
 function displayData(d,month) {
@@ -636,4 +663,3 @@ if (currentTime > IshaTimeToday || currentTime < FajrTimeTomorrow || currentTime
 }
 
 
-//next prayer in:::
