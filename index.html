@@ -58,12 +58,35 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- <div class="NextPrayerTime" id="nextPrayerTime">Next Prayer in:</div> -->
 		<div class="toggle-container">
 			<!-- dark mode switch -->
 			<input id="switch" name="theme" type="checkbox"><label for="switch">Toggle</label>
 		</div>
-	</div>
+		<div class="LocationMode"> Currently viewing:
+		<select id="mySelect" class="select-css" oninput="pickLocation()">
+			<option value="Dunedin" selected>
+				Dunedin
+			</option>
+			<!-- <option value="Auckland">
+				Auckland
+			</option>
+			<option>
+				Christchurch
+			</option>
+			<option>
+				Timaru
+			</option>
+			<option>
+				Oamaru
+			</option> -->
+			<option disabled>
+				More locations coming soon...
+			</option>
+			
+		</select> 
+	</div></div>
 	<div class="poly">
 	</div>
 
