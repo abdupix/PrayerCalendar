@@ -79,26 +79,41 @@ let longitude = '170.50361';
 let method = 2
 let month = mm
 
-function pickLocation(){
+function resetEverything() {
+
+    console.clear()
+    dailyDataCreated = false
+    weekDataCreated = false
+
+    changeLocation()
+}
+
+function changeLocation(){
 
     var location = document.getElementById("mySelect").value;
+
     if (location == "Dunedin"){
-        let latitude = '-45.87416';
-        let longitude = '170.50361';
-        // alert(latitude);
-        // alert(location);
+        latitude = '-45.87416';
+        longitude = '170.50361';
     }
     else if (location == "Auckland"){
-        let latitude = '-36.8485';
-        let longitude = '174.7633';
-        // alert(latitude);
-        // alert(location);
-
+        latitude = '-36.8485';
+        longitude = '174.7633';
+    }    
+    else if (location == "Christchurch"){
+        latitude = '-43.5321';
+        longitude = '172.6362';
+    }
+    else if (location == "Timaru"){
+        latitude = '-44.3970';
+        longitude = '171.2550';
+    }
+    else if (location == "Oamaru"){
+        latitude = '-45.0975';
+        longitude = '170.9704';
     }
     
-
     fetchData(api,latitude,longitude,method,mm,yyyy);
-    return longitude,latitude
 }
 
 
