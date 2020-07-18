@@ -153,6 +153,36 @@ function getLocation() {
     console.log(longitude)
 }
 
+
+
+function popError() {
+    document.getElementById("errorMessage").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+    var overlayC = document.getElementById("closeMsg");
+    var overlayB = document.getElementById("overlay");
+    window.onclick = function(event) {
+        if (event.target == overlayC | event.target == overlayB) {
+            overlayB.style.display = "none";
+            document.getElementById("errorMessage").style.display = "none";
+        }
+    }
+    var location = localStorage.getItem("location")
+    document.getElementById("CurrentL").innerHTML = "Your location has changed has been changed to: " + '<br><br>' + '<strong style="font-size:200%;">' + location +'</strong>';
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function fetchData(api,latitude,longitude,method,month,yyyy) {
  
 

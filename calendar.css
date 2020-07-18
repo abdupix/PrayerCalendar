@@ -11,8 +11,31 @@ html, body {
 	user-select: none;
 }
 /* general colour variables */
-
 html {
+	font-family: 'Advent Pro', sans-serif;
+	background: var(--grey-white);
+	--grey-white: #dfdfdf;
+	--white: #efefef;
+	--black: #22252A;
+	--blue: #2c3e50;
+	--alwaysblue: #2c3e50;
+	--light-blue: #455E76;
+	--gold: rgb(255, 167, 0);
+	--alsogold: 255, 167, 0;
+	--gold2: rgb(255, 167, 0);
+}
+html[data-theme='dark'] {
+	--bg-main: linear-gradient(45deg, #1C2437, #455880);
+	--grey-white: #22252A;
+	--blue: rgb(255, 167, 0);
+	/* --gold:#2c3e50; */
+	--main-text-color: #B5B5B5;
+	--white: #2d3035;
+	--gold2: #2c3e50;
+}
+
+
+/* html {
 	font-family: 'Advent Pro', sans-serif;
 	background: var(--grey-white);
 	--grey-white: #dfdfdf;
@@ -29,11 +52,11 @@ html[data-theme='dark'] {
 	--bg-main: linear-gradient(45deg, #1C2437, #455880);
 	--grey-white: #333333;
 	--blue: rgb(255, 167, 0);
-	/* --gold:#2c3e50; */
+	
 	--main-text-color: #B5B5B5;
 	--white: #434343;
 	--gold2: #2c3e50;
-}
+} */
 body {
 	padding-top: 100px;
 	background-image: url(index-main.jpg);
@@ -99,7 +122,7 @@ h3 {
 	font-weight: bold;
 }
 .nextPrayer {
-	box-shadow: inset 0px 0px 0px 2px var(--gold), 15px 15px 32px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0px 0px 0px 2px var(--gold), 0px 0px 10px 5px rgba(var(--alsogold),0.1);
 	border-radius: 20px;
 	background-color: var(--white);
 }
@@ -221,6 +244,9 @@ label:active:after {
 	.column:nth-child(3) {
 		padding-right: 5px;
 	}
+	.column:last-child {
+		padding-right:5px;
+	}
 	.mainBox {
 		margin-bottom: 5%;
 		transform: translate(-50%, 0%);
@@ -253,8 +279,9 @@ label:active:after {
 	.column {
 		width: 100%;
 		display: block;
-		margin-bottom: 20px;
+		/* margin-bottom: 20px; */
 	}
+	
 	.poly {
 		clip-path: polygon(0 87%, 100% 92%, 100% 100%, 0% 100%);
 		background: var(--white);
@@ -458,4 +485,45 @@ button {
 	box-shadow: 15px 15px 32px rgba(0, 0, 0, 0.1);
 	min-width:20%;
 	text-align-last:center;
+}
+
+
+
+.errorMsg {
+    /* margin: 2.5% 20%;*/
+	padding: 60px 65px;
+    border-radius: 10px;
+    z-index: 10;
+    position: fixed;
+	background-color: var(--white);
+	color:var(--blue);
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	display: none;
+	font-size:120%;
+}
+
+.errorMsg p {
+	color: var(--color-headings);
+	
+}
+#closeMsg{
+	background:var(--gold2);
+	border-radius:10px;
+	padding:5px 25%;
+	margin-top:500px;
+}
+
+.msgOverlay {
+    background: rgba(0, 0, 0, .85);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+	display: none;
+	
 }
