@@ -18,6 +18,10 @@ var hh = today.getHours();
 var min = today.getMinutes();
 var currentTime = hh + ":" + min;
 
+if (hh < 10) {
+    currentTime = '0' + currentTime
+}
+
 //Gets the element on the page being used to display the api data
 const table = document.getElementById('tableDisplay')
 
@@ -59,7 +63,14 @@ let DhuhrTimeToday = ''
 let AsrTimeToday = ''
 let MaghribTimeToday = ''
 let IshaTimeToday = ''
-			
+
+let FajrTimeTomorrow = ''
+let SunriseTomorrow = ''
+let DhuhrTimeTomorrow = ''
+let AsrTimeTomorrow = ''
+let MaghribTimeTomorrow = ''
+let IshaTimeTomorrow = ''
+
 //Variables for easier referencing
 let api = 'https://api.aladhan.com/v1/calendar'
 let latitude = '-45.87416';
@@ -133,13 +144,29 @@ function displayData(d,month) {
             MaghribTimeToday = formatText(prayerTimes[dd-1].Maghrib)
             IshaTimeToday = formatText(prayerTimes[dd-1].Isha)
             
-            let FajrTimeTomorrow = formatText(prayerTimes[dd].Fajr)
-            let SunriseTomorrow = formatText(prayerTimes[dd].Sunrise)
-            let DhuhrTimeTomorrow = formatText(prayerTimes[dd].Dhuhr)
-            let AsrTimeTomorrow = formatText(prayerTimes[dd].Asr)
-            let MaghribTimeTomorrow = formatText(prayerTimes[dd].Maghrib)
-            let IshaTimeTomorrow = formatText(prayerTimes[dd].Isha) 
+            FajrTimeTomorrow = formatText(prayerTimes[dd].Fajr)
+            SunriseTomorrow = formatText(prayerTimes[dd].Sunrise)
+            DhuhrTimeTomorrow = formatText(prayerTimes[dd].Dhuhr)
+            AsrTimeTomorrow = formatText(prayerTimes[dd].Asr)
+            MaghribTimeTomorrow = formatText(prayerTimes[dd].Maghrib)
+            IshaTimeTomorrow = formatText(prayerTimes[dd].Isha) 
 
+            if (currentTime > FajrTimeToday & currentTime < DhuhrTimeToday || currentTime == DhuhrTimeToday) {
+                document.getElementById("DhuhrPrayer").classList.add("nextPrayer");
+            }
+            if (currentTime > DhuhrTimeToday & currentTime < AsrTimeToday || currentTime == AsrTimeToday) {
+                document.getElementById("AsrPrayer").classList.add("nextPrayer");
+            }
+            if (currentTime > AsrTimeToday & currentTime < MaghribTimeToday || currentTime == MaghribTimeToday) {
+                document.getElementById("MaghribPrayer").classList.add("nextPrayer");
+            }
+            if (currentTime > MaghribTimeToday & currentTime < IshaTimeToday || currentTime == IshaTimeToday) {
+                document.getElementById("IshaPrayer").classList.add("nextPrayer");
+            }
+            if (currentTime > IshaTimeToday || currentTime < FajrTimeTomorrow || currentTime == FajrTimeTomorrow) {
+                document.getElementById("FajrPrayer").classList.add("nextPrayer");
+            }
+            
             console.log(`Today ${d1[dd-1].date.readable} [${dd-1}]:`)
             console.log(FajrTimeToday)
             console.log(SunriseToday)
@@ -181,12 +208,12 @@ function displayData(d,month) {
                 newMonthDates[i] = d2[i].date.gregorian.date
             }
 
-            let FajrTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Fajr)
-            let SunriseTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Sunrise)
-            let DhuhrTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Dhuhr)
-            let AsrTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Asr)
-            let MaghribTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Maghrib)
-            let IshaTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Isha) 
+            FajrTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Fajr)
+            SunriseTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Sunrise)
+            DhuhrTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Dhuhr)
+            AsrTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Asr)
+            MaghribTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Maghrib)
+            IshaTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Isha) 
 
             console.log(`Today ${d1[dd-1].date.readable} [${dd-1}]:`)
             console.log(FajrTimeToday)
@@ -222,7 +249,6 @@ function displayData(d,month) {
             start = getStartValue(startOfWeek,d1.length)
             weeks = createWeeksData(d1,start)
             length = d1.length
-            console.log(table)
             displayTableWeekly(weeks,length)
             
             weekDataCreated = true
@@ -259,7 +285,7 @@ function displayIndividualData(
     //Appends the fetched data to an element on the page
 	if (currentTime > (IshaTimeToday.substr(0,5)) && currentTime < '23:59') {
 		document.getElementById("fajrTime").innerHTML = `${FajrTimeTomorrow}`
-		document.getElementById("sunriseTime").innerHTML = `${SunriseToday}`
+		document.getElementById("sunriseTime").innerHTML = `${SunriseTomorrow}`
 		document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeTomorrow}`
 		document.getElementById("asrTime").innerHTML = `${AsrTimeTomorrow}`
 		document.getElementById("maghribTime").innerHTML = `${MaghribTimeTomorrow}`
@@ -267,7 +293,7 @@ function displayIndividualData(
 	}
 	else {
 		document.getElementById("fajrTime").innerHTML = `${FajrTimeToday}`
-		document.getElementById("sunriseTime").innerHTML = `${SunriseTomorrow}`
+		document.getElementById("sunriseTime").innerHTML = `${SunriseToday}`
 		document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeToday}`
 		document.getElementById("asrTime").innerHTML = `${AsrTimeToday}`
 		document.getElementById("maghribTime").innerHTML = `${MaghribTimeToday}`
@@ -645,21 +671,5 @@ disableNavButtons()
 
 btnWeekly.disabled = true
 btnYearly.disabled = true
-		
-if (currentTime > FajrTimeToday & currentTime < DhuhrTimeToday || currentTime == DhuhrTimeToday) {
-	document.getElementById("DhuhrPrayer").classList.add("nextPrayer");
-}
-if (currentTime > DhuhrTimeToday & currentTime < AsrTimeToday || currentTime == AsrTimeToday) {
-	document.getElementById("AsrPrayer").classList.add("nextPrayer");
-}
-if (currentTime > AsrTimeToday & currentTime < MaghribTimeToday || currentTime == MaghribTimeToday) {
-	document.getElementById("MaghribPrayer").classList.add("nextPrayer");
-}
-if (currentTime > MaghribTimeToday & currentTime < IshaTimeToday || currentTime == IshaTimeToday) {
-	document.getElementById("IshaPrayer").classList.add("nextPrayer");
-}
-if (currentTime > IshaTimeToday || currentTime < FajrTimeTomorrow || currentTime == FajrTimeTomorrow) {
-	document.getElementById("FajrPrayer").classList.add("nextPrayer");
-}
 
-
+console.log('Current Time = ' + currentTime)
