@@ -75,7 +75,6 @@ let IshaTimeTomorrow = ''
 let api = 'https://api.aladhan.com/v1/calendar'
 let latitude = '-45.87416';
 let longitude = '170.50361';
-document.getElementById("mySelect").value = "Dunedin";
 
 let method = 2
 let month = mm
@@ -144,6 +143,10 @@ function getLocation() {
 
     if (location != null) {
         checkLocation(location)
+        document.getElementById("mySelect").value = location;
+    }
+    else {
+        document.getElementById("mySelect").value = "Dunedin";
     }
 
     console.log(latitude)
