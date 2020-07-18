@@ -230,7 +230,7 @@ label:active:after {
 		clip-path: polygon(67% 98%, 100% 90%, 100% 100%, 0 100%, 0 90%);
 		background: var(--white);
 		height: 100vh;
-		margin-top: -100px;
+		margin-top: -95px;
 	}
 	.poly2 {
 		clip-path: polygon(67% 98%, 100% 90%, 100% 100%, 0 100%, 0 90%);
@@ -259,7 +259,7 @@ label:active:after {
 		clip-path: polygon(0 87%, 100% 92%, 100% 100%, 0% 100%);
 		background: var(--white);
 		height: calc(20vh + 1350px);
-		margin-top: 0px;
+		margin-top: 20px;
 	}
 	.poly2 {
 		clip-path: polygon(0 87%, 100% 92%, 100% 100%, 0% 100%);

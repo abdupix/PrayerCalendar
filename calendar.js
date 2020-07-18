@@ -75,48 +75,80 @@ let IshaTimeTomorrow = ''
 let api = 'https://api.aladhan.com/v1/calendar'
 let latitude = '-45.87416';
 let longitude = '170.50361';
- 
+document.getElementById("mySelect").value = "Dunedin";
+
 let method = 2
 let month = mm
 
 function resetEverything() {
 
     console.clear()
+
     dailyDataCreated = false
     weekDataCreated = false
 
     changeLocation()
+
+    console.log(latitude)
+    console.log(longitude)
+
+    fetchData(api,latitude,longitude,method,mm,yyyy);
 }
 
 function changeLocation(){
 
     var location = document.getElementById("mySelect").value;
 
+    localStorage.setItem("location", location)
+
+    console.log(location)
+
+    checkLocation(location)
+}
+
+function checkLocation(location) {
+
     if (location == "Dunedin"){
         latitude = '-45.87416';
-        longitude = '170.50361';
+        longitude = '170.50361';        
     }
     else if (location == "Auckland"){
         latitude = '-36.8485';
         longitude = '174.7633';
+        // localStorage.setItem("location", location);
+        // console.log(localStorage.getItem("location"));
     }    
     else if (location == "Christchurch"){
         latitude = '-43.5321';
         longitude = '172.6362';
+        // localStorage.setItem("location", location);
+        // console.log(localStorage.getItem("location"))
     }
     else if (location == "Timaru"){
         latitude = '-44.3970';
         longitude = '171.2550';
+        // localStorage.setItem("location", location);
+        // console.log(localStorage.getItem("location"))
     }
     else if (location == "Oamaru"){
         latitude = '-45.0975';
         longitude = '170.9704';
+        // localStorage.setItem("location", location);
+        // console.log(localStorage.getItem("location"))
     }
-    
-    fetchData(api,latitude,longitude,method,mm,yyyy);
 }
 
+function getLocation() {
 
+    var location = localStorage.getItem("location")
+
+    if (location != null) {
+        checkLocation(location)
+    }
+
+    console.log(latitude)
+    console.log(longitude)
+}
 
 function fetchData(api,latitude,longitude,method,month,yyyy) {
  
@@ -672,6 +704,8 @@ function enableNavButtons() {
     btnNext.disabled = false
 };
 
+getLocation()
+localStorage.removeItem("location")
 fetchData(api,latitude,longitude,method,mm,yyyy)
 
 btnWeekly.addEventListener("click",weekly)
