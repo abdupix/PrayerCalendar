@@ -71,6 +71,8 @@ let AsrTimeTomorrow = ''
 let MaghribTimeTomorrow = ''
 let IshaTimeTomorrow = ''
 
+var locations = ["Auckland","Christchurch","Dunedin","Gore","Invercargill","Oamaru","Queenstown","Timaru"]
+
 //Variables for easier referencing
 let api = 'https://api.aladhan.com/v1/calendar'
 let latitude = '-45.87416';
@@ -107,33 +109,37 @@ function changeLocation(){
 
 function checkLocation(location) {
 
-    if (location == "Dunedin"){
+    if (location == locations[0]){
+        latitude = '-36.8485';
+        longitude = '174.7633';
+    }    
+    else if (location == locations[1]){
+        latitude = '-43.5321';
+        longitude = '172.6362';
+    }
+    else if (location == locations[2]){
         latitude = '-45.87416';
         longitude = '170.50361';        
     }
-    else if (location == "Auckland"){
-        latitude = '-36.8485';
-        longitude = '174.7633';
-        // localStorage.setItem("location", location);
-        // console.log(localStorage.getItem("location"));
-    }    
-    else if (location == "Christchurch"){
-        latitude = '-43.5321';
-        longitude = '172.6362';
-        // localStorage.setItem("location", location);
-        // console.log(localStorage.getItem("location"))
+    else if (location == locations[3]){
+        latitude = '-46.0988';
+        longitude = '168.9458';
     }
-    else if (location == "Timaru"){
-        latitude = '-44.3970';
-        longitude = '171.2550';
-        // localStorage.setItem("location", location);
-        // console.log(localStorage.getItem("location"))
+    else if (location == locations[4]){
+        latitude = '-46.4132';
+        longitude = '168.3538';
     }
-    else if (location == "Oamaru"){
+    else if (location == locations[5]){
         latitude = '-45.0975';
         longitude = '170.9704';
-        // localStorage.setItem("location", location);
-        // console.log(localStorage.getItem("location"))
+    }
+    else if (location == locations[6]){
+        latitude = '-45.0312';
+        longitude = '168.6626';
+    }
+    else if (location == locations[7]){
+        latitude = '-44.3970';
+        longitude = '171.2550';
     }
 }
 
