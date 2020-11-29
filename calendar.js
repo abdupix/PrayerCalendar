@@ -22,6 +22,11 @@ if (hh < 10) {
     currentTime = '0' + currentTime
 }
 
+if (hh < 12)
+    currentTime += ' AM'
+else
+    currentTime += ' PM'
+
 //Gets the element on the page being used to display the api data
 const table = document.getElementById('tableDisplay')
 
@@ -709,3 +714,5 @@ disableNavButtons()
 
 btnWeekly.disabled = true
 btnYearly.disabled = true
+
+console.log('Current Time = ' + currentTime)
