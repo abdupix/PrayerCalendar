@@ -71,7 +71,42 @@ let AsrTimeTomorrow = ''
 let MaghribTimeTomorrow = ''
 let IshaTimeTomorrow = ''
 
-var locations = ["Auckland","Christchurch","Dunedin","Gore","Invercargill","Oamaru","Queenstown","Timaru"]
+var locations = [
+    "Auckland",
+    "Christchurch",
+    "Dunedin",
+    "Gore",
+    "Invercargill",
+    "Oamaru",
+    "Queenstown",
+    "Timaru",
+    "Wellington",
+    "Hamilton"
+]
+var latitudes = [
+    "-36.8485",
+    "-43.5321",
+    "-45.87416",
+    "-46.0988",
+    "-46.4132",
+    "-45.0975",
+    "-45.0312",
+    "-44.3970",
+    "-41.2769",
+    "-37.87500"
+]
+var longitudes = [
+    "174.7633",
+    "172.6362",
+    "170.50361",
+    "168.9458",
+    "168.3538",
+    "170.9704",
+    "168.6626",
+    "171.2550",
+    "174.7731",
+    "175.29428"
+]
 
 //Variables for easier referencing
 let api = 'https://api.aladhan.com/v1/calendar'
@@ -104,37 +139,11 @@ function changeLocation(){
 
 function checkLocation(location) {
 
-    if (location == locations[0]){
-        latitude = '-36.8485';
-        longitude = '174.7633';
-    }    
-    else if (location == locations[1]){
-        latitude = '-43.5321';
-        longitude = '172.6362';
-    }
-    else if (location == locations[2]){
-        latitude = '-45.87416';
-        longitude = '170.50361';        
-    }
-    else if (location == locations[3]){
-        latitude = '-46.0988';
-        longitude = '168.9458';
-    }
-    else if (location == locations[4]){
-        latitude = '-46.4132';
-        longitude = '168.3538';
-    }
-    else if (location == locations[5]){
-        latitude = '-45.0975';
-        longitude = '170.9704';
-    }
-    else if (location == locations[6]){
-        latitude = '-45.0312';
-        longitude = '168.6626';
-    }
-    else if (location == locations[7]){
-        latitude = '-44.3970';
-        longitude = '171.2550';
+    for (i = 0; i < locations.length; i++) {
+        if (location == locations[i]) {
+            latitude = latitudes[i];
+            longitude = longitudes[i];
+        }
     }
 }
 
@@ -166,7 +175,6 @@ function closePopup() {
 
 function fetchData(api,latitude,longitude,method,yyyy) {
  
-
     //Fetch used to query the API for the prayer times
     fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&year=${yyyy}&annual=true`)
     .then(res => res.json())
@@ -181,7 +189,6 @@ function fetchData(api,latitude,longitude,method,yyyy) {
             console.log("Error! The server returned a status of 404 page not found. Could not get this month's information")
         }
     })
-    
 }
 
 function displayData(d) {
