@@ -90,10 +90,7 @@ function resetEverything() {
 
     changeLocation()
 
-    console.log(latitude)
-    console.log(longitude)
-
-    fetchData(api,latitude,longitude,method,mm,yyyy);
+    fetchData(api,latitude,longitude,method,yyyy);
 }
 
 function changeLocation(){
@@ -101,8 +98,6 @@ function changeLocation(){
     var location = document.getElementById("mySelect").value;
 
     localStorage.setItem("location", location)
-
-    console.log(location)
 
     checkLocation(location)
 }
@@ -154,9 +149,6 @@ function getLocation() {
     else {
         document.getElementById("mySelect").value = "Dunedin";
     }
-
-    console.log(latitude)
-    console.log(longitude)
 }
 
 function popError() {
@@ -172,7 +164,7 @@ function closePopup() {
     document.getElementById("errorMessage").style.display = "none";
 }
 
-function fetchData(api,latitude,longitude,method,month,yyyy) {
+function fetchData(api,latitude,longitude,method,yyyy) {
  
 
     //Fetch used to query the API for the prayer times
@@ -181,19 +173,18 @@ function fetchData(api,latitude,longitude,method,month,yyyy) {
     .then(d => {        
         //Checks if the request was successful and the page exists
         if (d.code === 200) {
-            console.log(d)
             data = d
-            displayData(data,month)
+            displayData(data)
         }
          //Prints an error message to the console if the request was unsuccessful or the page doesn't exist
-         else if (d.code === 404) {
+        else if (d.code === 404) {
             console.log("Error! The server returned a status of 404 page not found. Could not get this month's information")
         }
     })
     
 }
 
-function displayData(d,month) {
+function displayData(d) {
 
     let d1 = d.data[mm]
     let d2 = d.data[mmNext]
@@ -235,22 +226,6 @@ function displayData(d,month) {
             if (currentTime > IshaTimeToday || currentTime < FajrTimeTomorrow || currentTime == FajrTimeTomorrow) {
                 document.getElementById("FajrPrayer").classList.add("nextPrayer");
             }
-            
-            console.log(`Today ${d1[dd-1].date.readable} [${dd-1}]:`)
-            console.log(FajrTimeToday)
-            console.log(SunriseToday)
-            console.log(DhuhrTimeToday)
-            console.log(AsrTimeToday)
-            console.log(MaghribTimeToday)
-            console.log(IshaTimeToday)
-
-            console.log(`Tomorrow ${d1[dd].date.readable} [${dd}]:`)
-            console.log(FajrTimeTomorrow)
-            console.log(SunriseTomorrow)
-            console.log(DhuhrTimeTomorrow)
-            console.log(AsrTimeTomorrow)
-            console.log(MaghribTimeTomorrow)
-            console.log(IshaTimeTomorrow)
 
             dailyDataCreated = true
             
@@ -283,22 +258,6 @@ function displayData(d,month) {
             AsrTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Asr)
             MaghribTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Maghrib)
             IshaTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Isha) 
-
-            console.log(`Today ${d1[dd-1].date.readable} [${dd-1}]:`)
-            console.log(FajrTimeToday)
-            console.log(SunriseToday)
-            console.log(DhuhrTimeToday)
-            console.log(AsrTimeToday)
-            console.log(MaghribTimeToday)
-            console.log(IshaTimeToday)
-
-            console.log(`Tomorrow ${d2[ddTomorrow-1].date.readable} [${ddTomorrow-1}]:`)
-            console.log(FajrTimeTomorrow)
-            console.log(SunriseTomorrow)
-            console.log(DhuhrTimeTomorrow)
-            console.log(AsrTimeTomorrow)
-            console.log(MaghribTimeTomorrow)
-            console.log(IshaTimeTomorrow)
 
             dailyDataCreated = true
             
@@ -596,9 +555,9 @@ function nextMonth() {
         counter++
     
     if (counter == 13) {
-        year+=1
+        yyyy+=1
         counter = 1
-        fetchData(api,latitude,longitude,method,mm,year)
+        fetchData(api,latitude,longitude,method,yyyy)
     }
 
     if (counter == 1) {
@@ -611,7 +570,7 @@ function nextMonth() {
                 displayTableMonthly(months,counter)
             }
             else {
-                displayTableYearly(year)
+                displayTableYearly(yyyy)
             }
         }, 2500)
     }
@@ -634,9 +593,9 @@ function previousMonth() {
     counter--
 
     if (counter == 0) {
-        year-=1
+        yyyy-=1
         counter = 12
-        fetchData(api,latitude,longitude,method,mm,year)
+        fetchData(api,latitude,longitude,method,yyyy)
     }
     
     if (counter == 12) {
@@ -646,11 +605,10 @@ function previousMonth() {
                 displayTableWeekly(weeks,length)
             }
             else if (currentTable == 'monthly') {
-                console.log(counter)
                 displayTableMonthly(months,counter)
             }
             else {
-                displayTableYearly(year)
+                displayTableYearly(yyyy)
             }
         }, 2500)
     }
@@ -662,7 +620,7 @@ function previousMonth() {
             displayTableMonthly(months,counter)
         }
         else {
-            displayTableYearly(year)
+            displayTableYearly(yyyy)
         }
     }
 };
@@ -670,7 +628,10 @@ function previousMonth() {
 function resetMonth() {
     
     counter = mm
+    yyyy = today.getFullYear()
     currentTable = 'weekly'
+
+    fetchData(api,latitude,longitude,method,yyyy)
 
     disableNavButtons()
 
@@ -727,7 +688,7 @@ function enableNavButtons() {
 };
 
 getLocation()
-fetchData(api,latitude,longitude,method,mm,yyyy)
+fetchData(api,latitude,longitude,method,yyyy)
 
 btnWeekly.addEventListener("click",weekly)
 btnMonthly.addEventListener("click",monthly)
@@ -741,5 +702,3 @@ disableNavButtons()
 
 btnWeekly.disabled = true
 btnYearly.disabled = true
-
-console.log('Current Time = ' + currentTime)
