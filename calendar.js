@@ -271,6 +271,22 @@ function displayData(d) {
             MaghribTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Maghrib)
             IshaTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Isha) 
 
+            if (currentTime > FajrTimeToday & currentTime < DhuhrTimeToday || currentTime == DhuhrTimeToday) {
+                document.getElementById("DhuhrPrayer").classList.add("nextPrayer");
+            }
+            if (currentTime > DhuhrTimeToday & currentTime < AsrTimeToday || currentTime == AsrTimeToday) {
+                document.getElementById("AsrPrayer").classList.add("nextPrayer");
+            }
+            if (currentTime > AsrTimeToday & currentTime < MaghribTimeToday || currentTime == MaghribTimeToday) {
+                document.getElementById("MaghribPrayer").classList.add("nextPrayer");
+            }
+            if (currentTime > MaghribTimeToday & currentTime < IshaTimeToday || currentTime == IshaTimeToday) {
+                document.getElementById("IshaPrayer").classList.add("nextPrayer");
+            }
+            if (currentTime > IshaTimeToday || currentTime < FajrTimeTomorrow || currentTime == FajrTimeTomorrow) {
+                document.getElementById("FajrPrayer").classList.add("nextPrayer");
+            }
+            
             dailyDataCreated = true
             
             displayIndividualData(
