@@ -206,6 +206,10 @@ function displayData(d) {
         datesToday[i] = d1[i].date.gregorian.date
     }
     
+    if (currentTime.substr(3,2) < 10) {
+        currentTime = currentTime.substr(0,3) + '0' + currentTime.substr(3,1)
+    }
+
     if (dd < d1.length) {            
 
         if (dailyDataCreated === false) {
@@ -223,19 +227,19 @@ function displayData(d) {
             MaghribTimeTomorrow = formatText(prayerTimes[dd].Maghrib)
             IshaTimeTomorrow = formatText(prayerTimes[dd].Isha) 
 
-            if (currentTime > FajrTimeToday & currentTime < DhuhrTimeToday || currentTime == DhuhrTimeToday) {
+            if (currentTime.substr(0,5) > FajrTimeToday.substr(0,5) & currentTime.substr(0,5) < DhuhrTimeToday.substr(0,5) || currentTime.substr(0,5) == DhuhrTimeToday.substr(0,5)) {
                 document.getElementById("DhuhrPrayer").classList.add("nextPrayer");
             }
-            if (currentTime > DhuhrTimeToday & currentTime < AsrTimeToday || currentTime == AsrTimeToday) {
+            if (currentTime.substr(0,5) > DhuhrTimeToday.substr(0,5) & currentTime.substr(0,5) < AsrTimeToday.substr(0,5) || currentTime.substr(0,5) == AsrTimeToday.substr(0,5)) {
                 document.getElementById("AsrPrayer").classList.add("nextPrayer");
             }
-            if (currentTime > AsrTimeToday & currentTime < MaghribTimeToday || currentTime == MaghribTimeToday) {
+            if (currentTime.substr(0,5) > AsrTimeToday.substr(0,5) & currentTime.substr(0,5) < MaghribTimeToday.substr(0,5) || currentTime.substr(0,5) == MaghribTimeToday.substr(0,5)) {
                 document.getElementById("MaghribPrayer").classList.add("nextPrayer");
             }
-            if (currentTime > MaghribTimeToday & currentTime < IshaTimeToday || currentTime == IshaTimeToday) {
+            if (currentTime.substr(0,5) > MaghribTimeToday.substr(0,5) & currentTime.substr(0,5) < IshaTimeToday.substr(0,5) || currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
                 document.getElementById("IshaPrayer").classList.add("nextPrayer");
             }
-            if (currentTime > IshaTimeToday || currentTime < FajrTimeTomorrow || currentTime == FajrTimeTomorrow) {
+            if (currentTime.substr(0,5) > IshaTimeToday.substr(0,5) || currentTime.substr(0,5) < FajrTimeTomorrow.substr(0,5) || currentTime.substr(0,5) == FajrTimeTomorrow.substr(0,5)) {
                 document.getElementById("FajrPrayer").classList.add("nextPrayer");
             }
 
@@ -271,19 +275,19 @@ function displayData(d) {
             MaghribTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Maghrib)
             IshaTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Isha) 
 
-            if (currentTime > FajrTimeToday & currentTime < DhuhrTimeToday || currentTime == DhuhrTimeToday) {
+            if (currentTime.substr(0,5) > FajrTimeToday.substr(0,5) & currentTime.substr(0,5) < DhuhrTimeToday.substr(0,5) || currentTime.substr(0,5) == DhuhrTimeToday.substr(0,5)) {
                 document.getElementById("DhuhrPrayer").classList.add("nextPrayer");
             }
-            if (currentTime > DhuhrTimeToday & currentTime < AsrTimeToday || currentTime == AsrTimeToday) {
+            if (currentTime.substr(0,5) > DhuhrTimeToday.substr(0,5) & currentTime.substr(0,5) < AsrTimeToday.substr(0,5) || currentTime.substr(0,5) == AsrTimeToday.substr(0,5)) {
                 document.getElementById("AsrPrayer").classList.add("nextPrayer");
             }
-            if (currentTime > AsrTimeToday & currentTime < MaghribTimeToday || currentTime == MaghribTimeToday) {
+            if (currentTime.substr(0,5) > AsrTimeToday.substr(0,5) & currentTime.substr(0,5) < MaghribTimeToday.substr(0,5) || currentTime.substr(0,5) == MaghribTimeToday.substr(0,5)) {
                 document.getElementById("MaghribPrayer").classList.add("nextPrayer");
             }
-            if (currentTime > MaghribTimeToday & currentTime < IshaTimeToday || currentTime == IshaTimeToday) {
+            if (currentTime.substr(0,5) > MaghribTimeToday.substr(0,5) & currentTime.substr(0,5) < IshaTimeToday.substr(0,5) || currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
                 document.getElementById("IshaPrayer").classList.add("nextPrayer");
             }
-            if (currentTime > IshaTimeToday || currentTime < FajrTimeTomorrow || currentTime == FajrTimeTomorrow) {
+            if (currentTime.substr(0,5) > IshaTimeToday.substr(0,5) || currentTime.substr(0,5) < FajrTimeTomorrow.substr(0,5) || currentTime.substr(0,5) == FajrTimeTomorrow.substr(0,5)) {
                 document.getElementById("FajrPrayer").classList.add("nextPrayer");
             }
             
