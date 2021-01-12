@@ -345,54 +345,105 @@ label:active:after {
 		content: "Isha";
 	}
 }
-/* @media screen and (max-width: 620px) {
-	.buttons-container {
-		position: relative;
-		left: 22.5%;
+
+@media screen and (max-width: 1160) { 
+	
+	.LocationMode{
+		padding-right: 40% !important;
+		
 	}
 }
 
-@media screen and (max-width: 512px) {
-	.buttons-container {
-		position: relative;
-		left: 20%;
+@media screen and (max-width: 930px) { 
+	
+	.LocationMode{
+		padding-right: 30% !important;
+		
+	}
+}
+
+@media screen and (max-width: 800px) { 
+	
+	.LocationMode{
+		padding-right: 20% !important;
+		
+	}
+}
+
+@media screen and (max-width: 620px) { 
+	
+	.LocationMode{
+		padding-right: 10% !important;
+		
+	}
+}
+
+@media screen and (max-width: 619px) {
+	.inline {
+		display: inline !important;
+	}
+	
+	.LocationMode{
+		padding-right: 0px !important;
+		
 	}
 }
 
 @media screen and (max-width: 440px) {
-	.buttons-container {
-		position: relative;
-		left: 15%;
+	.inline {
+		display: inline !important;
+	}
+	
+	.LocationMode{
+		padding-right: 0px !important;
+		
 	}
 }
 
 @media screen and (max-width: 400px) {
-	.buttons-container {
-		position: relative;
-		left: 10%;
+	.inline {
+		display: inline !important;
+	}
+	
+	.LocationMode{
+		padding-right: 0px !important;
+		
 	}
 }
 
 @media screen and (max-width: 350px) {
-	.buttons-container {
-		position: relative;
-		left: 15%;
+	.inline {
+		display: inline !important;
 	}
-}
+	
+	.LocationMode{
+		padding-right: 0px !important;
+		
+	}
+} 
 
 @media screen and (max-width: 325px) {
-	.buttons-container {
-		position: relative;
-		left: 5px;
+
+	.inline {
+		display: inline !important;
+	}
+	
+	.LocationMode{
+		padding-right: 0px !important;
+		
 	}
 }
 
 @media screen and (max-width: 300px) {
-	.buttons-container {
-		position: relative;
-		left: 0px;
+	.inline {
+		display: inline !important;
 	}
-} */
+	
+	.LocationMode{
+		padding-right: 0px !important;
+		
+	}
+} 
 
 .table4NextMonth {
 	background-color: var(--white);
@@ -465,6 +516,15 @@ button {
 	table {
 		width: 100%;
 	}
+
+	.inline {
+		display: inline;
+	}
+
+	.LocationMode{
+		padding-right: 0%;
+		
+	}
 }
 .select-css{
 	color: var(--blue);
@@ -476,7 +536,8 @@ button {
 	border-radius: 10px;
 }
 .LocationMode{
-	padding-left:10px;
+	/* padding-left:10px; */
+	padding-right: 60%;
 	margin-top:-18px;
 	font-weight: bold;
     
@@ -487,7 +548,20 @@ button {
 	text-align-last:center;
 }
 
+.align{
+	margin-top:-18px;
+	font-weight: bold;
+}
 
+.inline {
+	display: flex;
+	justify-content: center;
+	align-self: center;
+}
+
+.toggle-buttons {
+	width: 100%;
+}
 
 .errorMsg {
     /* margin: 2.5% 20%;*/

@@ -15,6 +15,7 @@
 
   		gtag('config', 'UA-169919625-1');
 	</script>
+	<script src="push.js"></script>
 </head>
 <body>
 	<div id="overlay" class="msgOverlay"></div>
@@ -66,61 +67,74 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- <div class="NextPrayerTime" id="nextPrayerTime">Next Prayer in:</div> -->
+		<br>
 		<div class="toggle-container">
+			<div class="inline">
+				<div class="LocationMode"> Currently viewing:
+					<select id="mySelect" class="select-css" oninput="resetEverything(), popError()">
+					<option value="Auckland">
+						Auckland
+					</option>
+					<option value="Christchurch">
+						Christchurch
+					</option>
+					<option value="Dunedin" selected>
+						Dunedin
+					</option>
+					<option value="Gore">
+						Gore
+					</option>		
+					<option value="Hamilton">
+						Hamilton
+					</option>
+					<option value="Invercargill">
+						Invercargill
+					</option>			
+					<option value="Oamaru">
+						Oamaru
+					</option>
+					<option value="Queenstown">
+						Queenstown
+					</option> 
+					<option value="Timaru">
+						Timaru
+					</option>
+					<option value="Wellington">
+						Wellington
+					</option>
+					<option disabled>
+						More locations coming soon...
+					</option>
+				</select> 
+			</div>
 			<!-- dark mode switch -->
-			<input id="switch" name="theme" type="checkbox"><label for="switch">Toggle</label>
+			<div class="toggle-buttons">
+				<div class="align">
+					<p>
+						Dark Mode:
+						<input id="switch" name="theme" type="checkbox"><label for="switch">Toggle</label>
+					</p>
+				</div>
+			</div>
 		</div>
-		<div class="LocationMode"> Currently viewing:
-		<select id="mySelect" class="select-css" oninput="resetEverything(), popError()">
-			<option value="Auckland">
-				Auckland
-			</option>
-			<option value="Christchurch">
-				Christchurch
-			</option>
-			<option value="Dunedin" selected>
-				Dunedin
-			</option>
-			<option value="Gore">
-				Gore
-			</option>		
-			<option value="Hamilton">
-				Hamilton
-			</option>
-			<option value="Invercargill">
-				Invercargill
-			</option>			
-			<option value="Oamaru">
-				Oamaru
-			</option>
-			<option value="Queenstown">
-				Queenstown
-			</option> 
-			<option value="Timaru">
-				Timaru
-			</option>
-			<option value="Wellington">
-				Wellington
-			</option>
-			<option disabled>
-				More locations coming soon...
-			</option>
-			
-		</select> 
-	</div></div>
-	<div class="poly">
 	</div>
-
-<div class="buttonTable-container">
-
-	<div class="buttons-container">
-		<div class = "buttonsDiv">
-			<button class = "buttons" id = "weekly">Weekly</button>
-			<button class = "buttons" id = "monthly" href="#todayScroll">Monthly</button>
-			<button class = "buttons" id = "yearly">Yearly</button>
-		</div>
+	<div id="audio">
+		<audio id="azaan_audio" class="azaan_audio" controls preload="none" allow="autoplay">
+			<source src="azaan.mp3" type="audio/mp3">
+		</audio>
+	</div>
+</div>
+<div class="poly">
+	</div>
+	
+	<div class="buttonTable-container">
+		
+		<div class="buttons-container">
+			<div class = "buttonsDiv">
+				<button class = "buttons" id = "weekly">Weekly</button>
+				<button class = "buttons" id = "monthly" href="#todayScroll">Monthly</button>
+				<button class = "buttons" id = "yearly">Yearly</button>
+			</div>
 		<br>
 		<div class = "buttonsDiv">
 			<button  class = "buttons" id = "previous">Previous</button>

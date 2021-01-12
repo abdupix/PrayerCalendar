@@ -11,21 +11,37 @@ var mm = today.getMonth()+1; //Adds 1 to the month because it is 0 based
 var yyyy = today.getFullYear();
 
 var ddTomorrow = tomorrow.getDate();
-var mmNext = today.getMonth()+2; //Adds 1 to the month because it is 0 based
+var mmNext = tomorrow.getMonth()+2; //Adds 1 to the month because it is 0 based
 var yyyyNext = tomorrow.getFullYear()
 
-var hh = today.getHours();
-var min = today.getMinutes();
-var currentTime = hh + ":" + min;
+var hh ;
+var min;
 
-if (hh < 10) {
-    currentTime = '0' + currentTime
+var currentTime = getCurrentTime(today);
+
+function getCurrentTime(today) {
+
+    hh = today.getHours();
+    min = today.getMinutes();
+    
+    if (min < 10) {
+        min = '0' + min
+    }
+
+    if (hh < 10) {
+        currentTime = '0' + hh + ":" + min;
+    }
+    else {
+        currentTime = hh + ":" + min;
+    }
+
+    if (hh < 12)
+        currentTime += ' AM'
+    else
+        currentTime += ' PM'
+
+    return currentTime;
 }
-
-if (hh < 12)
-    currentTime += ' AM'
-else
-    currentTime += ' PM'
 
 //Gets the element on the page being used to display the api data
 const table = document.getElementById('tableDisplay')
@@ -200,14 +216,15 @@ function displayData(d) {
 
     let d1 = d.data[mm]
     let d2 = d.data[mmNext]
+
+    if (mmNext < mm) {
+        console.log('Next Year')
+
+    }
     
     for (let i = 0; i < d1.length; i++) {
         prayerTimes[i] = d1[i].timings
         datesToday[i] = d1[i].date.gregorian.date
-    }
-    
-    if (currentTime.substr(3,2) < 10) {
-        currentTime = currentTime.substr(0,3) + '0' + currentTime.substr(3,1)
     }
 
     if (dd < d1.length) {            
@@ -266,6 +283,8 @@ function displayData(d) {
             for (let i = 0; i < d2.length; i++) {
                 newMonthPrayerTimes[i] = d2[i].timings
                 newMonthDates[i] = d2[i].date.gregorian.date
+                // console.log(newMonthPrayerTimes[i])
+                // console.log(newMonthDates[i])
             }
 
             FajrTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Fajr)
@@ -736,3 +755,95 @@ btnWeekly.disabled = true
 btnYearly.disabled = true
 
 console.log('Current Time = ' + currentTime)
+
+setTimeout(() => {
+    playAzaan();
+}, 2500)
+
+function playAzaan () {
+    var audio = document.getElementById("azaan_audio");
+
+    let salaahTimes = [FajrTimeToday, DhuhrTimeToday, AsrTimeToday, MaghribTimeToday, IshaTimeToday];
+
+    let endAzaanTimes = [];
+
+    for (let i = 0; i < salaahTimes.length; i++) {
+
+        let endAzaanTime = calcEndAzaanTime(salaahTimes[i]);
+        endAzaanTimes[i] = getCurrentTime(endAzaanTime);
+    }
+
+    let check = false;
+
+    today = new Date();
+
+    currentTime = getCurrentTime(today)
+    
+    if (currentTime.substr(0,5) == FajrTimeToday.substr(0,5)) {
+        console.log('Playing Fajr Azaan...')
+        sendNotification('Fajr', FajrTimeToday);
+        audio.style.display = 'block';
+        audio.play();
+    }
+    else if (currentTime.substr(0,5) == DhuhrTimeToday.substr(0,5)) {
+        console.log('Playing Dhuhr Azaan...')
+        sendNotification('Dhur', DhuhrTimeToday);
+        audio.style.display = 'block';
+        audio.play();
+    }
+    else if (currentTime.substr(0,5) == AsrTimeToday.substr(0,5)) {
+        console.log('Playing Asr Azaan...')
+        sendNotification('Asr', AsrTimeToday);
+        audio.style.display = 'block';
+        audio.play();
+    }
+    else if (currentTime.substr(0,5) == MaghribTimeToday.substr(0,5)) {
+        console.log('Playing Maghrib Azaan...')
+        sendNotification('Maghrib', MaghribTimeToday);
+        audio.style.display = 'block';
+        audio.play();
+    }
+    else if (currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
+        console.log('Playing Isha Azaan...')
+        sendNotification('Isha', IshaTimeToday);
+        audio.style.display = 'block';
+        audio.play();
+    }
+    else {
+        for (let i = 0; i < endAzaanTimes.length; i++) {
+            if (currentTime.substr(0,5) >= salaahTimes[i].substr(0,5) && currentTime.substr(0,5) <= endAzaanTimes[i].substr(0,5)) {
+                check = true;
+            }            
+        }
+
+        if (!check) {
+            audio.pause();
+            audio.style.display = 'none';
+        }
+        else {
+            audio.style.display = 'block';
+        }
+    }
+}
+
+function calcEndAzaanTime(salaahTime) {
+    return new Date(new Date(today.getFullYear(), today.getMonth()+1, today.getDate(), salaahTime.substr(0,2), salaahTime.substr(3,2)).getTime() + 180000);
+}
+
+function sendNotification(salaah, time) {
+    let message = salaah + ' Salaah Time: ' + time;
+    Push.create(message);
+}
+
+setInterval(function () { playAzaan(); }, 60000)
+
+if (!Push.Permission.has()) {
+        
+    if (Push.Permission.get() === 'default') {
+        alert('Please note, if you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications otherwise select "Block" to disable notifications. You will not be able to change it or re-enable it unless you reset the site permissions.');
+    }
+    
+    Push.Permission.request(Push.Permission.onGranted, Push.Permission.onDenied);
+}
+
+console.log('Notification Permission: ' + Push.Permission.get())
