@@ -215,6 +215,24 @@ label:active:after {
 	float: left;
 	margin: 0 10px;
 }
+
+#date {
+	color: var(--gold);
+	width: 100%;
+	margin-top: -80px;
+	display: flex;
+}
+
+#englishDate {
+	margin-left: 130px;
+	margin-right: 40%;
+	text-align: center;
+}
+
+#islamicDate {
+	text-align: center;
+}
+
 /* Responsive columns */
 
 @media screen and (max-width: 1340px) {
@@ -249,7 +267,7 @@ label:active:after {
 	}
 	.mainBox {
 		margin-bottom: 5%;
-		transform: translate(-50%, 0%);
+		transform: translate(-50%, 25%);
 		top: 5%;
 	}
 	.poly {
@@ -261,6 +279,18 @@ label:active:after {
 	.poly2 {
 		clip-path: polygon(67% 98%, 100% 90%, 100% 100%, 0 100%, 0 90%);
 	}
+	
+	#date {
+		color: var(--gold);
+		width: 100%;
+		display: flex;
+	}
+
+	#englishDate {
+		color: var(--blue);
+		margin-left: 10%;
+		margin-right: 33%;
+	}
 }
 @media screen and (max-width: 680px) {
 	.mainBox {
@@ -270,8 +300,23 @@ label:active:after {
 		top: 2.5%;
 		left: 50%;
 		margin-right: -50%;
-		transform: translate(-50%, 0%);
+		transform: translate(-50%, 15%);
 	}
+			
+	#date {
+		color: var(--gold);
+		width: 100%;
+		display: block;
+	}
+
+	#englishDate {
+		color: var(--blue);
+		width: 100%;
+		margin-left: 0;
+		margin-right: 33%;
+		text-align: center;
+	}
+
 	.column {
 		padding-right: 5px;
 		padding-left: 5px;
@@ -291,10 +336,6 @@ label:active:after {
 	.poly2 {
 		clip-path: polygon(0 87%, 100% 92%, 100% 100%, 0% 100%);
 	}
-	/* .buttons-container {
-		position: relative;
-		left: 28%;
-	} */
 	.table {
 		overflow-x: auto;
 		width: 100%;
@@ -398,6 +439,24 @@ label:active:after {
 		padding-right: 0px !important;
 		
 	}
+	
+	.mainBox {
+		transform: translate(-50%, 15%);
+	}
+			
+	#date {
+		color: var(--gold);
+		width: 100%;
+		display: block;
+	}
+
+	#englishDate {
+		color: var(--blue);
+		width: 100%;
+		margin-left: 0;
+		margin-right: 33%;
+		text-align: center;
+	}
 }
 
 @media screen and (max-width: 400px) {
@@ -408,6 +467,24 @@ label:active:after {
 	.LocationMode{
 		padding-right: 0px !important;
 		
+	}
+
+	.mainBox {
+		transform: translate(-50%, 18%);
+	}
+			
+	#date {
+		color: var(--gold);
+		width: 100%;
+		display: block;
+	}
+
+	#englishDate {
+		color: var(--blue);
+		width: 100%;
+		margin-left: 0;
+		margin-right: 33%;
+		text-align: center;
 	}
 }
 

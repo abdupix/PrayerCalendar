@@ -283,8 +283,6 @@ function displayData(d) {
             for (let i = 0; i < d2.length; i++) {
                 newMonthPrayerTimes[i] = d2[i].timings
                 newMonthDates[i] = d2[i].date.gregorian.date
-                // console.log(newMonthPrayerTimes[i])
-                // console.log(newMonthDates[i])
             }
 
             FajrTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Fajr)
@@ -533,6 +531,11 @@ function createMonthsData(d) {
         count++
     }
 
+    displayDate(
+        months[mm-1][dd-1][1],
+        months[mm-1][dd-1][2]
+    )
+
     return months
 };
 
@@ -588,6 +591,28 @@ function displayTableMonthly(months,mm) {
         table.append(row)
     })
 };
+
+function displayDate(englishDate, islamicDate) {
+    let heading1 = document.createElement('h3');
+    let heading2 = document.createElement('h3');
+
+    heading1.innerHTML = englishDate;
+    heading2.innerHTML = islamicDate;
+
+    let div1 = document.createElement('div');
+    let div2 = document.createElement('div');
+
+    div1.id = 'englishDate'
+    div2.id = 'islamicDate'
+
+    div1.append(heading1);
+    div2.append(heading2);
+    
+    let dateDiv = document.getElementById('date');
+    
+    dateDiv.append(div1);
+    dateDiv.append(div2);
+}
 
 function deleteTable() {
 
