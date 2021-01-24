@@ -17,6 +17,8 @@ var yyyyNext = tomorrow.getFullYear()
 var hh ;
 var min;
 
+var dateDisplayed = false;
+
 var currentTime = getCurrentTime(today);
 
 function getCurrentTime(today) {
@@ -531,10 +533,15 @@ function createMonthsData(d) {
         count++
     }
 
-    displayDate(
-        months[mm-1][dd-1][1],
-        months[mm-1][dd-1][2]
-    )
+    if (!dateDisplayed)
+    {
+        displayDate(
+            months[mm-1][dd-1][1],
+            months[mm-1][dd-1][2]
+        )
+
+        dateDisplayed = true;
+    }
 
     return months
 };
