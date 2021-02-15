@@ -14,7 +14,7 @@ var ddTomorrow = tomorrow.getDate();
 var mmNext = tomorrow.getMonth()+2; //Adds 1 to the month because it is 0 based
 var yyyyNext = tomorrow.getFullYear()
 
-var hh ;
+var hh;
 var min;
 
 var dateDisplayed = false;
@@ -93,6 +93,8 @@ let DhuhrTimeTomorrow = ''
 let AsrTimeTomorrow = ''
 let MaghribTimeTomorrow = ''
 let IshaTimeTomorrow = ''
+
+let maghribEnded = false
 
 var locations = [
     "Auckland",
@@ -257,9 +259,11 @@ function displayData(d) {
             }
             if (currentTime.substr(0,5) > MaghribTimeToday.substr(0,5) & currentTime.substr(0,5) < IshaTimeToday.substr(0,5) || currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
                 document.getElementById("IshaPrayer").classList.add("nextPrayer");
+                maghribEnded = true;
             }
             if (currentTime.substr(0,5) > IshaTimeToday.substr(0,5) || currentTime.substr(0,5) < FajrTimeTomorrow.substr(0,5) || currentTime.substr(0,5) == FajrTimeTomorrow.substr(0,5)) {
                 document.getElementById("FajrPrayer").classList.add("nextPrayer");
+                maghribEnded = true;
             }
 
             dailyDataCreated = true
@@ -305,9 +309,11 @@ function displayData(d) {
             }
             if (currentTime.substr(0,5) > MaghribTimeToday.substr(0,5) & currentTime.substr(0,5) < IshaTimeToday.substr(0,5) || currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
                 document.getElementById("IshaPrayer").classList.add("nextPrayer");
+                maghribEnded = true;
             }
             if (currentTime.substr(0,5) > IshaTimeToday.substr(0,5) || currentTime.substr(0,5) < FajrTimeTomorrow.substr(0,5) || currentTime.substr(0,5) == FajrTimeTomorrow.substr(0,5)) {
                 document.getElementById("FajrPrayer").classList.add("nextPrayer");
+                maghribEnded = true;
             }
             
             dailyDataCreated = true
@@ -535,12 +541,26 @@ function createMonthsData(d) {
 
     if (!dateDisplayed)
     {
-        displayDate(
-            months[mm-1][dd-1][1],
-            months[mm-1][dd-1][2]
-        )
+        if (dd < months[mm-1].length) {
+            
+            displayDate(
+                months[mm-1][dd-1][1],
+                months[mm-1][dd-1][2],
+                months[mm-1][dd][2]
+            )
+                
+            dateDisplayed = true;
+        }
+        else {
 
-        dateDisplayed = true;
+            displayDate(
+                months[mm-1][dd-1][1],
+                months[mm-1][dd-1][2],
+                months[mm][ddTomorrow-1][2]
+            )
+                
+            dateDisplayed = true;
+        }       
     }
 
     return months
@@ -599,12 +619,18 @@ function displayTableMonthly(months,mm) {
     })
 };
 
-function displayDate(englishDate, islamicDate) {
+function displayDate(englishDate, islamicDateToday, islamicDateTomorrow) {
     let heading1 = document.createElement('h3');
     let heading2 = document.createElement('h3');
 
     heading1.innerHTML = englishDate;
-    heading2.innerHTML = islamicDate;
+
+    if (maghribEnded) {
+        heading2.innerHTML = islamicDateTomorrow;
+    }
+    else {
+        heading2.innerHTML = islamicDateToday;
+    }
 
     let div1 = document.createElement('div');
     let div2 = document.createElement('div');

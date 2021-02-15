@@ -224,12 +224,12 @@ label:active:after {
 }
 
 #englishDate {
-	margin-left: 130px;
-	margin-right: 40%;
+	width: 50%;
 	text-align: center;
 }
 
 #islamicDate {
+	width: 50%;
 	text-align: center;
 }
 
