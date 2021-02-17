@@ -285,12 +285,6 @@ label:active:after {
 		width: 100%;
 		display: flex;
 	}
-
-	#englishDate {
-		color: var(--blue);
-		margin-left: 10%;
-		margin-right: 33%;
-	}
 }
 @media screen and (max-width: 680px) {
 	.mainBox {
@@ -312,8 +306,11 @@ label:active:after {
 	#englishDate {
 		color: var(--blue);
 		width: 100%;
-		margin-left: 0;
-		margin-right: 33%;
+		text-align: center;
+	}
+
+	#islamicDate {
+		width: 100%;
 		text-align: center;
 	}
 
