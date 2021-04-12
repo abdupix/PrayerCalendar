@@ -544,9 +544,9 @@ function createMonthsData(d) {
         if (dd < months[mm-1].length) {
             
             displayDate(
-                months[mm-1][dd-1][1],
-                months[mm-1][dd-1][2],
-                months[mm-1][dd][2]
+                months[mm-1][dd-1][1]//,
+                // months[mm-1][dd-1][2],
+                // months[mm-1][dd][2]
             )
                 
             dateDisplayed = true;
@@ -554,9 +554,9 @@ function createMonthsData(d) {
         else {
 
             displayDate(
-                months[mm-1][dd-1][1],
-                months[mm-1][dd-1][2],
-                months[mm][ddTomorrow-1][2]
+                months[mm-1][dd-1][1]//,
+                // months[mm-1][dd-1][2],
+                // months[mm][ddTomorrow-1][2]
             )
                 
             dateDisplayed = true;
@@ -619,32 +619,32 @@ function displayTableMonthly(months,mm) {
     })
 };
 
-function displayDate(englishDate, islamicDateToday, islamicDateTomorrow) {
+function displayDate(englishDate) {//, islamicDateToday, islamicDateTomorrow) {
     let heading1 = document.createElement('h3');
-    let heading2 = document.createElement('h3');
+    // let heading2 = document.createElement('h3');
 
     heading1.innerHTML = englishDate;
 
-    if (maghribEnded) {
-        heading2.innerHTML = islamicDateTomorrow;
-    }
-    else {
-        heading2.innerHTML = islamicDateToday;
-    }
+    // if (maghribEnded) {
+    //     heading2.innerHTML = islamicDateTomorrow;
+    // }
+    // else {
+    //     heading2.innerHTML = islamicDateToday;
+    // }
 
     let div1 = document.createElement('div');
-    let div2 = document.createElement('div');
+    // let div2 = document.createElement('div');
 
     div1.id = 'englishDate'
-    div2.id = 'islamicDate'
+    // div2.id = 'islamicDate'
 
     div1.append(heading1);
-    div2.append(heading2);
+    // div2.append(heading2);
     
     let dateDiv = document.getElementById('date');
     
     dateDiv.append(div1);
-    dateDiv.append(div2);
+    // dateDiv.append(div2);
 }
 
 function deleteTable() {
@@ -888,9 +888,16 @@ function calcEndAzaanTime(salaahTime) {
     return new Date(new Date(today.getFullYear(), today.getMonth()+1, today.getDate(), salaahTime.substr(0,2), salaahTime.substr(3,2)).getTime() + 180000);
 }
 
-function sendNotification(salaah, time) {
+async function sendNotification(salaah, time) {    
     let message = salaah + ' Salaah Time: ' + time;
+    
     Push.create(message);
+    
+    const workbox = new Workbox('/serviceWorker.js'); 
+    workbox.register(); 
+
+    const swVersion = await workbox.messageSW({type: 'GET_VERSION', salaah: salaah, message: message}); 
+    console.log('Service Worker version:', swVersion);
 }
 
 setInterval(function () { playAzaan(); }, 60000)

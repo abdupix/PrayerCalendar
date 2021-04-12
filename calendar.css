@@ -224,14 +224,16 @@ label:active:after {
 }
 
 #englishDate {
-	width: 50%;
-	text-align: center;
+	/* width: 50%; */
+	width: 100%;
+	text-align: left;
+	padding-left: 10%;
 }
 
-#islamicDate {
+/* #islamicDate {
 	width: 50%;
 	text-align: center;
-}
+} */
 
 /* Responsive columns */
 
