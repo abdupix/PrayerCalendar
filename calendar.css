@@ -336,7 +336,7 @@ label:active:after {
 	.poly {
 		clip-path: polygon(0 87%, 100% 92%, 100% 100%, 0% 100%);
 		background: var(--white);
-		height: calc(20vh + 1350px);
+		height: calc(22vh + 1650px);
 		margin-top: 20px;
 	}
 	.poly2 {
