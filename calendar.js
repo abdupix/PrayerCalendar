@@ -328,11 +328,17 @@ function displayData(d) {
         }
     }
 
+    months = createMonthsData(d)
+
+    monthsArray[index] = months
+
+    index+=1
+
     if (dd <= d1.length) {
         if (weekDataCreated === false) {
             let startOfWeek = findStartOfWeeks(d1)
             start = getStartValue(startOfWeek,d1.length)
-            weeks = createWeeksData(d1,start)
+            weeks = createWeeksData(d1,start, months[mm-1])
             length = d1.length
             displayTableWeekly(weeks,length)
             
@@ -343,7 +349,7 @@ function displayData(d) {
         if (weekDataCreated === false) {
             let startOfWeek = findStartOfWeeks(d2)
             start = getStartValue(startOfWeek,d2.length)
-            weeks = createWeeksData(d2,start)
+            weeks = createWeeksData(d2,start, months[mmNext-1])
             length = d2.length
             
             displayTableWeekly(weeks,length)
@@ -351,12 +357,6 @@ function displayData(d) {
             weekDataCreated = true
         }
     }
-
-    months = createMonthsData(d)
-
-    monthsArray[index] = months
-
-    index+=1
 };
 
 function displayIndividualData(
@@ -420,8 +420,7 @@ function getStartValue(startOfWeek,dataLength) {
     return start
 };
 
-function createWeeksData(data,start) {
-    
+function createWeeksData(data, start, month) {
     let count = 0
 
     for (let i = start - 1; (count < 7 && (i <= data.length)); i++) {
@@ -432,7 +431,7 @@ function createWeeksData(data,start) {
             
             weeks[count][0] = data[i].date.gregorian.weekday.en
             weeks[count][1] = data[i].date.readable
-            weeks[count][2] = data[i].date.hijri.day + ' ' + data[i].date.hijri.month.en + ' ' + data[i].date.hijri.year
+            weeks[count][2] = month[i][2]
             weeks[count][3] = formatText(data[i].timings.Fajr)
             weeks[count][4] = formatText(data[i].timings.Sunrise)
             weeks[count][5] = formatText(data[i].timings.Dhuhr)
@@ -514,10 +513,28 @@ function formatText(value) {
     return value
 };
 
+function insertIslamicDate(islamicDates, newIslamicDate, index, d, insertNewDate) {
+    
+    if (insertNewDate) {
+        console.log('Inserting New Islamic Date')
+        islamicDates.splice(index, 0, newIslamicDate)
+    }
+
+    let count = 0
+
+    for (let h = 1; h < 13; h++) {
+        for (let i = 0; i < d.data[h].length; i++) {
+            months[h-1][i][2] = islamicDates[count]            
+            count++
+        }
+    }
+}
+
 function createMonthsData(d) {
     
     let count = 0
-
+    var islamicDates = []
+    
     for (let h = 1; h < 13; h++) {
 
         months[h-1] = new Array(d.data[h].length)
@@ -526,17 +543,28 @@ function createMonthsData(d) {
 
             months[h-1][i] = new Array(9);
             
+            islamicDates[count] = d.data[h][i].date.hijri.day + ' ' + d.data[h][i].date.hijri.month.en + ' ' + d.data[h][i].date.hijri.year
+
             months[h-1][i][0] = d.data[h][i].date.gregorian.weekday.en
             months[h-1][i][1] = d.data[h][i].date.readable
-            months[h-1][i][2] = d.data[h][i].date.hijri.day + ' ' + d.data[h][i].date.hijri.month.en + ' ' + d.data[h][i].date.hijri.year
+            // months[h-1][i][2] = d.data[h][i].date.hijri.day + ' ' + d.data[h][i].date.hijri.month.en + ' ' + d.data[h][i].date.hijri.year
             months[h-1][i][3] = formatText(d.data[h][i].timings.Fajr)
             months[h-1][i][4] = formatText(d.data[h][i].timings.Sunrise)
             months[h-1][i][5] = formatText(d.data[h][i].timings.Dhuhr)
             months[h-1][i][6] = formatText(d.data[h][i].timings.Asr)
             months[h-1][i][7] = formatText(d.data[h][i].timings.Maghrib)
             months[h-1][i][8] = formatText(d.data[h][i].timings.Isha)
+    
+            count++
         }
-        count++
+    }
+    
+    if (d.data[1][0].date.readable === '01 Jan 2021') {
+        let newIslamicDate = '30 Jumādá al-ākhirah 1442'
+        insertIslamicDate(islamicDates, newIslamicDate, 43, d, true)
+    }
+    else {
+        insertIslamicDate(islamicDates, '', 0, d, false)
     }
 
     if (!dateDisplayed)
@@ -544,9 +572,9 @@ function createMonthsData(d) {
         if (dd < months[mm-1].length) {
             
             displayDate(
-                months[mm-1][dd-1][1]//,
-                // months[mm-1][dd-1][2],
-                // months[mm-1][dd][2]
+                months[mm-1][dd-1][1],
+                months[mm-1][dd-1][2],
+                months[mm-1][dd][2]
             )
                 
             dateDisplayed = true;
@@ -554,9 +582,9 @@ function createMonthsData(d) {
         else {
 
             displayDate(
-                months[mm-1][dd-1][1]//,
-                // months[mm-1][dd-1][2],
-                // months[mm][ddTomorrow-1][2]
+                months[mm-1][dd-1][1],
+                months[mm-1][dd-1][2],
+                months[mm][ddTomorrow-1][2]
             )
                 
             dateDisplayed = true;
@@ -619,32 +647,32 @@ function displayTableMonthly(months,mm) {
     })
 };
 
-function displayDate(englishDate) {//, islamicDateToday, islamicDateTomorrow) {
+function displayDate(englishDate, islamicDateToday, islamicDateTomorrow) {
     let heading1 = document.createElement('h3');
-    // let heading2 = document.createElement('h3');
+    let heading2 = document.createElement('h3');
 
     heading1.innerHTML = englishDate;
 
-    // if (maghribEnded) {
-    //     heading2.innerHTML = islamicDateTomorrow;
-    // }
-    // else {
-    //     heading2.innerHTML = islamicDateToday;
-    // }
+    if (maghribEnded) {
+        heading2.innerHTML = islamicDateTomorrow;
+    }
+    else {
+        heading2.innerHTML = islamicDateToday;
+    }
 
     let div1 = document.createElement('div');
-    // let div2 = document.createElement('div');
+    let div2 = document.createElement('div');
 
     div1.id = 'englishDate'
-    // div2.id = 'islamicDate'
+    div2.id = 'islamicDate'
 
     div1.append(heading1);
-    // div2.append(heading2);
+    div2.append(heading2);
     
     let dateDiv = document.getElementById('date');
     
     dateDiv.append(div1);
-    // dateDiv.append(div2);
+    dateDiv.append(div2);
 }
 
 function deleteTable() {
