@@ -298,7 +298,7 @@ label:active:after {
 		left: 50%;
 		margin-right: -50%;
 		transform: translate(-50%, 15%);
-			margin-top:-100px;
+			margin-top:-120px;
 	}
 			
 	#date {
@@ -311,10 +311,12 @@ label:active:after {
 		color: var(--blue);
 		width: 100%;
 		text-align: center;
-		/*added by abdu 12/4/21 for mobile friendly*/
-		margin:0
+		
 
 	}
+	#englishDate h3{
+		/*added by abdu 12/4/21 for mobile friendly*/
+		margin:20px;
 
 	#islamicDate {
 		width: 100%;
