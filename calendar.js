@@ -936,16 +936,16 @@ async function sendNotification(salaah, time) {
 
 setInterval(function () { playAzaan(); }, 60000)
 
-if (!Push.Permission.has()) {
+//if (!Push.Permission.has()) {
         
-    if (Push.Permission.get() === 'default') {
-        alert('If you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications.');
+   // if (Push.Permission.get() === 'default') {
+   //     alert('If you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications.');
    
    //     alert('Please note, if you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications otherwise select "Block" to disable notifications. You will not be able to change it or re-enable it unless you reset the site permissions.');
  
-    }
+ //   }
     
-    Push.Permission.request(Push.Permission.onGranted, Push.Permission.onDenied);
-}
+ //   Push.Permission.request(Push.Permission.onGranted, Push.Permission.onDenied);
+//}
 
 console.log('Notification Permission: ' + Push.Permission.get())
