@@ -56,6 +56,13 @@ const btnNext = document.getElementById('next')
 const btnReset = document.getElementById('reset')
 const btnPrevious = document.getElementById('previous')
 
+// English dates to look for to remove an islamic date if there is extra
+var englishDatesToRemoveFor = ['']
+
+// Arrays used to add any missing islamic dates if the english date matches
+var englishDatesToInsertFor = ['03 Apr 2022']
+var islamicDatesToInsert = ['30 Shaʿbān 1443']
+
 var data = []
 var counter = mm
 var year = yyyy
@@ -536,6 +543,23 @@ function insertIslamicDate(islamicDates, newIslamicDate, index, d, insertNewDate
     }
 }
 
+function removeIslamicDate(islamicDates, index, d, insertNewDate) {
+    
+    if (insertNewDate) {
+        console.log('Inserting New Islamic Date')
+        islamicDates.splice(index, 0, newIslamicDate)
+    }
+
+    let count = 0
+
+    for (let h = 1; h < 13; h++) {
+        for (let i = 0; i < d.data[h].length; i++) {
+            months[h-1][i][2] = islamicDates[count]            
+            count++
+        }
+    }
+}
+
 function createMonthsData(d) {
     
     let count = 0
@@ -564,14 +588,20 @@ function createMonthsData(d) {
             count++
         }
     }
-    
-    if (d.data[1][0].date.readable === '01 Jan 2021') {
-        let newIslamicDate = '30 Jumādá al-ākhirah 1442'
-        insertIslamicDate(islamicDates, newIslamicDate, 43, d, true)
-    }
-    else {
-        insertIslamicDate(islamicDates, '', 0, d, false)
-    }
+
+    let index = 0
+
+    englishDatesToInsertFor.forEach((englishDate) => {
+        months.forEach((month) => {
+            month.forEach((day) => {
+                if (day[1] == englishDate) {
+                    let islamicDateIndex = englishDatesToInsertFor.indexOf(englishDate)
+                    insertIslamicDate(islamicDates, islamicDatesToInsert[islamicDateIndex], index, d, true)
+                }
+                index++
+            })
+        })
+    })
 
     if (!dateDisplayed)
     {
@@ -936,16 +966,16 @@ async function sendNotification(salaah, time) {
 
 setInterval(function () { playAzaan(); }, 60000)
 
-//if (!Push.Permission.has()) {
+if (!Push.Permission.has()) {
         
-   // if (Push.Permission.get() === 'default') {
-   //     alert('If you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications.');
+    if (Push.Permission.get() === 'default') {
+        alert('If you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications.');
    
    //     alert('Please note, if you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications otherwise select "Block" to disable notifications. You will not be able to change it or re-enable it unless you reset the site permissions.');
  
- //   }
+    }
     
- //   Push.Permission.request(Push.Permission.onGranted, Push.Permission.onDenied);
-//}
+    Push.Permission.request(Push.Permission.onGranted, Push.Permission.onDenied);
+}
 
 console.log('Notification Permission: ' + Push.Permission.get())
