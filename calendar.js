@@ -62,6 +62,7 @@ var englishDatesToRemoveFor = ['']
 // Arrays used to add any missing islamic dates if the english date matches
 var englishDatesToInsertFor = ['03 Apr 2022']
 var islamicDatesToInsert = ['30 Shaʿbān 1443']
+var islamicDatesToRemove = ['']
 
 var data = []
 var counter = mm
@@ -529,7 +530,7 @@ function formatText(value) {
 function insertIslamicDate(islamicDates, newIslamicDate, index, d, insertNewDate) {
     
     if (insertNewDate) {
-        console.log('Inserting New Islamic Date')
+        console.log('Inserting New Islamic Date: ' + newIslamicDate)
         islamicDates.splice(index, 0, newIslamicDate)
     }
 
@@ -546,8 +547,8 @@ function insertIslamicDate(islamicDates, newIslamicDate, index, d, insertNewDate
 function removeIslamicDate(islamicDates, index, d, insertNewDate) {
     
     if (insertNewDate) {
-        console.log('Inserting New Islamic Date')
-        islamicDates.splice(index, 0, newIslamicDate)
+        console.log('Removing Islamic Date: ' + islamicDates[index])
+        islamicDates.splice(index, 1)
     }
 
     let count = 0
@@ -558,6 +559,32 @@ function removeIslamicDate(islamicDates, index, d, insertNewDate) {
             count++
         }
     }
+}
+
+function adjustIslamicDates(islamicDates, d) {
+    
+    let index = 0
+
+    englishDatesToInsertFor.forEach((englishDate) => {
+        months.forEach((month) => {
+            month.forEach((day) => {
+                if (day[1] == englishDate) {
+                    let islamicDateIndex = englishDatesToInsertFor.indexOf(englishDate)
+                    insertIslamicDate(islamicDates, islamicDatesToInsert[islamicDateIndex], index, d, true)
+                }
+                index++
+            })
+        })
+    })
+
+    islamicDatesToRemove.forEach((islamicDateToRemove) => {
+        islamicDates.forEach((islamicDate) => {
+            if (islamicDateToRemove == islamicDate) {
+                let index = islamicDates.indexOf(islamicDate)
+                removeIslamicDate(islamicDates, index, d, true)
+            }
+        })
+    })
 }
 
 function createMonthsData(d) {
@@ -589,20 +616,8 @@ function createMonthsData(d) {
         }
     }
 
-    let index = 0
-
-    englishDatesToInsertFor.forEach((englishDate) => {
-        months.forEach((month) => {
-            month.forEach((day) => {
-                if (day[1] == englishDate) {
-                    let islamicDateIndex = englishDatesToInsertFor.indexOf(englishDate)
-                    insertIslamicDate(islamicDates, islamicDatesToInsert[islamicDateIndex], index, d, true)
-                }
-                index++
-            })
-        })
-    })
-
+    adjustIslamicDates(islamicDates, d)
+    
     if (!dateDisplayed)
     {
         if (dd < months[mm-1].length) {
