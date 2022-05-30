@@ -46,15 +46,15 @@ function getCurrentTime(today) {
 }
 
 //Gets the element on the page being used to display the api data
-const table = document.getElementById('tableDisplay')
+const table = $('#tableDisplay')
 
-const btnWeekly = document.getElementById('weekly')
-const btnMonthly = document.getElementById('monthly')
-const btnYearly = document.getElementById('yearly')
+const btnWeekly = $('#weekly')
+const btnMonthly = $('#monthly')
+const btnYearly = $('#yearly')
 
-const btnNext = document.getElementById('next')
-const btnReset = document.getElementById('reset')
-const btnPrevious = document.getElementById('previous')
+const btnNext = $('#next')
+const btnReset = $('#reset')
+const btnPrevious = $('#previous')
 
 // English dates to look for to remove an islamic date if there is extra
 var englishDatesToRemoveFor = ['']
@@ -163,7 +163,7 @@ function resetEverything() {
 
 function changeLocation(){
 
-    var location = document.getElementById("mySelect").value;
+    var location = $('#mySelect').val();
 
     localStorage.setItem("location", location)
 
@@ -186,24 +186,24 @@ function getLocation() {
 
     if (location != null) {
         checkLocation(location)
-        document.getElementById("mySelect").value = location;
+        $('#mySelect').val(location);
     }
     else {
-        document.getElementById("mySelect").value = "Dunedin";
+        $('#mySelect').val("Dunedin");
     }
 }
 
 function popError() {
-    document.getElementById("errorMessage").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
+    $("#errorMessage").attr("style", "display: block;");
+    $("#overlay").attr("style", "display: block;");
 
     var location = localStorage.getItem("location")
-    document.getElementById("CurrentL").innerHTML = "Your location has changed has been changed to: " + '<br><br>' + '<strong style="font-size:200%;">' + location +'</strong>';
+    $("#CurrentL").html("Your location has changed has been changed to: " + '<br><br>' + '<strong style="font-size:200%;">' + location +'</strong>');
 }
 
 function closePopup() {
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("errorMessage").style.display = "none";
+    $("#overlay").attr("style", "display: none;");
+    $("#errorMessage").attr("style", "display: none;");
 }
 
 function fetchData(api,latitude,longitude,method,yyyy) {
@@ -222,6 +222,50 @@ function fetchData(api,latitude,longitude,method,yyyy) {
             console.log("Error! The server returned a status of 404 page not found. Could not get this month's information")
         }
     })
+}
+
+function toggleBoxShadow(index) {
+    let prayerCardNames = [
+        $('#FajrPrayer'),
+        $('#DhuhrPrayer'),
+        $('#AsrPrayer'),
+        $('#MaghribPrayer'),
+        $('#IshaPrayer')
+    ];
+
+    for (let i = 0; i < prayerCardNames.length; i++) {
+        if (i == index) {
+            prayerCardNames[i].addClass('nextPrayer');
+        }
+        else {
+            prayerCardNames[i].removeClass('nextPrayer');
+        }
+    }
+
+
+}
+
+function findNextPrayer(FajrTimeToday, DhuhrTimeToday, AsrTimeToday, MaghribTimeToday, IshaTimeToday, FajrTimeTomorrow) {
+    if (currentTime.substr(0,5) < FajrTimeToday.substr(0,5) || currentTime.substr(0,5) == FajrTimeToday.substr(0,5)) {
+        toggleBoxShadow(0);
+    }
+    else if (currentTime.substr(0,5) > FajrTimeToday.substr(0,5) & currentTime.substr(0,5) < DhuhrTimeToday.substr(0,5) || currentTime.substr(0,5) == DhuhrTimeToday.substr(0,5)) {
+        toggleBoxShadow(1);
+    }
+    else if (currentTime.substr(0,5) > DhuhrTimeToday.substr(0,5) & currentTime.substr(0,5) < AsrTimeToday.substr(0,5) || currentTime.substr(0,5) == AsrTimeToday.substr(0,5)) {
+        toggleBoxShadow(2);
+    }
+    else if (currentTime.substr(0,5) > AsrTimeToday.substr(0,5) & currentTime.substr(0,5) < MaghribTimeToday.substr(0,5) || currentTime.substr(0,5) == MaghribTimeToday.substr(0,5)) {
+        toggleBoxShadow(3);
+    }
+    else if (currentTime.substr(0,5) > MaghribTimeToday.substr(0,5) & currentTime.substr(0,5) < IshaTimeToday.substr(0,5) || currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
+        toggleBoxShadow(4);
+        maghribEnded = true;
+    }
+    else if (currentTime.substr(0,5) > IshaTimeToday.substr(0,5) || currentTime.substr(0,5) < FajrTimeTomorrow.substr(0,5) || currentTime.substr(0,5) == FajrTimeTomorrow.substr(0,5)) {
+        toggleBoxShadow(0);
+        maghribEnded = true;
+    }
 }
 
 function displayData(d) {
@@ -256,26 +300,20 @@ function displayData(d) {
             MaghribTimeTomorrow = formatText(prayerTimes[dd].Maghrib)
             IshaTimeTomorrow = formatText(prayerTimes[dd].Isha) 
 
-            if (currentTime.substr(0,5) < FajrTimeToday.substr(0,5) || currentTime.substr(0,5) == FajrTimeToday.substr(0,5)) {
-                document.getElementById("FajrPrayer").classList.add("nextPrayer");
-            }
-            else if (currentTime.substr(0,5) > FajrTimeToday.substr(0,5) & currentTime.substr(0,5) < DhuhrTimeToday.substr(0,5) || currentTime.substr(0,5) == DhuhrTimeToday.substr(0,5)) {
-                document.getElementById("DhuhrPrayer").classList.add("nextPrayer");
-            }
-            else if (currentTime.substr(0,5) > DhuhrTimeToday.substr(0,5) & currentTime.substr(0,5) < AsrTimeToday.substr(0,5) || currentTime.substr(0,5) == AsrTimeToday.substr(0,5)) {
-                document.getElementById("AsrPrayer").classList.add("nextPrayer");
-            }
-            else if (currentTime.substr(0,5) > AsrTimeToday.substr(0,5) & currentTime.substr(0,5) < MaghribTimeToday.substr(0,5) || currentTime.substr(0,5) == MaghribTimeToday.substr(0,5)) {
-                document.getElementById("MaghribPrayer").classList.add("nextPrayer");
-            }
-            else if (currentTime.substr(0,5) > MaghribTimeToday.substr(0,5) & currentTime.substr(0,5) < IshaTimeToday.substr(0,5) || currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
-                document.getElementById("IshaPrayer").classList.add("nextPrayer");
-                maghribEnded = true;
-            }
-            else if (currentTime.substr(0,5) > IshaTimeToday.substr(0,5) || currentTime.substr(0,5) < FajrTimeTomorrow.substr(0,5) || currentTime.substr(0,5) == FajrTimeTomorrow.substr(0,5)) {
-                document.getElementById("FajrPrayer").classList.add("nextPrayer");
-                maghribEnded = true;
-            }
+            findNextPrayer(
+                FajrTimeToday,
+                SunriseToday,
+                DhuhrTimeToday,
+                AsrTimeToday,
+                MaghribTimeToday,
+                IshaTimeToday,
+                FajrTimeTomorrow,
+                SunriseTomorrow,
+                DhuhrTimeTomorrow,
+                AsrTimeTomorrow,
+                MaghribTimeTomorrow,
+                IshaTimeTomorrow
+            );
 
             dailyDataCreated = true
             
@@ -309,27 +347,21 @@ function displayData(d) {
             MaghribTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Maghrib)
             IshaTimeTomorrow = formatText(newMonthPrayerTimes[ddTomorrow-1].Isha) 
 
-            if (currentTime.substr(0,5) < FajrTimeToday.substr(0,5) || currentTime.substr(0,5) == FajrTimeToday.substr(0,5)) {
-                document.getElementById("FajrPrayer").classList.add("nextPrayer");
-            }
-            if (currentTime.substr(0,5) > FajrTimeToday.substr(0,5) & currentTime.substr(0,5) < DhuhrTimeToday.substr(0,5) || currentTime.substr(0,5) == DhuhrTimeToday.substr(0,5)) {
-                document.getElementById("DhuhrPrayer").classList.add("nextPrayer");
-            }
-            if (currentTime.substr(0,5) > DhuhrTimeToday.substr(0,5) & currentTime.substr(0,5) < AsrTimeToday.substr(0,5) || currentTime.substr(0,5) == AsrTimeToday.substr(0,5)) {
-                document.getElementById("AsrPrayer").classList.add("nextPrayer");
-            }
-            if (currentTime.substr(0,5) > AsrTimeToday.substr(0,5) & currentTime.substr(0,5) < MaghribTimeToday.substr(0,5) || currentTime.substr(0,5) == MaghribTimeToday.substr(0,5)) {
-                document.getElementById("MaghribPrayer").classList.add("nextPrayer");
-            }
-            if (currentTime.substr(0,5) > MaghribTimeToday.substr(0,5) & currentTime.substr(0,5) < IshaTimeToday.substr(0,5) || currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
-                document.getElementById("IshaPrayer").classList.add("nextPrayer");
-                maghribEnded = true;
-            }
-            if (currentTime.substr(0,5) > IshaTimeToday.substr(0,5) || currentTime.substr(0,5) < FajrTimeTomorrow.substr(0,5) || currentTime.substr(0,5) == FajrTimeTomorrow.substr(0,5)) {
-                document.getElementById("FajrPrayer").classList.add("nextPrayer");
-                maghribEnded = true;
-            }
-            
+            findNextPrayer(
+                FajrTimeToday,
+                SunriseToday,
+                DhuhrTimeToday,
+                AsrTimeToday,
+                MaghribTimeToday,
+                IshaTimeToday,
+                FajrTimeTomorrow,
+                SunriseTomorrow,
+                DhuhrTimeTomorrow,
+                AsrTimeTomorrow,
+                MaghribTimeTomorrow,
+                IshaTimeTomorrow
+            );
+
             dailyDataCreated = true
             
             displayIndividualData(
@@ -383,20 +415,20 @@ function displayIndividualData(
     
     //Appends the fetched data to an element on the page
 	if (currentTime > (IshaTimeToday.substr(0,5)) && currentTime < '23:59') {
-		document.getElementById("fajrTime").innerHTML = `${FajrTimeTomorrow}`
-		document.getElementById("sunriseTime").innerHTML = `${SunriseTomorrow}`
-		document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeTomorrow}`
-		document.getElementById("asrTime").innerHTML = `${AsrTimeTomorrow}`
-		document.getElementById("maghribTime").innerHTML = `${MaghribTimeTomorrow}`
-		document.getElementById("ishaTime").innerHTML = `${IshaTimeTomorrow}`
+		$("#fajrTime").html(`${FajrTimeTomorrow}`)
+		$("#sunriseTime").html(`${SunriseTomorrow}`)
+		$("#dhuhrTime").html(`${DhuhrTimeTomorrow}`)
+		$("#asrTime").html(`${AsrTimeTomorrow}`)
+		$("#maghribTime").html(`${MaghribTimeTomorrow}`)
+		$("#ishaTime").html(`${IshaTimeTomorrow}`)
 	}
 	else {
-		document.getElementById("fajrTime").innerHTML = `${FajrTimeToday}`
-		document.getElementById("sunriseTime").innerHTML = `${SunriseToday}`
-		document.getElementById("dhuhrTime").innerHTML = `${DhuhrTimeToday}`
-		document.getElementById("asrTime").innerHTML = `${AsrTimeToday}`
-		document.getElementById("maghribTime").innerHTML = `${MaghribTimeToday}`
-		document.getElementById("ishaTime").innerHTML = `${IshaTimeToday}`
+		$("#fajrTime").html(`${FajrTimeToday}`)
+		$("#sunriseTime").html(`${SunriseToday}`)
+		$("#dhuhrTime").html(`${DhuhrTimeToday}`)
+		$("#asrTime").html(`${AsrTimeToday}`)
+		$("#maghribTime").html(`${MaghribTimeToday}`)
+		$("#ishaTime").html(`${IshaTimeToday}`)
     }
 }
 
@@ -720,7 +752,7 @@ function displayDate(englishDate, islamicDateToday, islamicDateTomorrow) {
     div1.append(heading1);
     div2.append(heading2);
     
-    let dateDiv = document.getElementById('date');
+    let dateDiv = $('#date');
     
     dateDiv.append(div1);
     dateDiv.append(div2);
@@ -728,9 +760,11 @@ function displayDate(englishDate, islamicDateToday, islamicDateTomorrow) {
 
 function deleteTable() {
 
-    if (table.rows.length > 0) {
-        while (table.rows.length > 0) {
-            table.childNodes.forEach(row => {
+    const tbody = $('#tableDisplay > tbody')
+
+    if (tbody.children().length > 0) {
+        while (tbody.children().length > 0) {
+            tbody[0].childNodes.forEach(row => {
                 row.remove()
             })
         }
@@ -823,17 +857,17 @@ function resetMonth() {
 
     disableNavButtons()
 
-    tableButtons[0].disabled = true
-    tableButtons[1].disabled = false
-    tableButtons[2].disabled = true
+    tableButtons[0].attr('disabled', true)
+    tableButtons[1].attr('disabled', false)
+    tableButtons[2].attr('disabled', true)
 
     displayTableWeekly(weeks,length)
 };
 
 function weekly() {
     
-    btnWeekly.disabled = true
-    btnMonthly.disabled = false
+    btnWeekly.attr('disabled', true)
+    btnMonthly.attr('disabled', false)
 
     disableNavButtons()
 
@@ -844,8 +878,8 @@ function weekly() {
 
 function monthly() {
     
-    btnWeekly.disabled = false
-    btnMonthly.disabled = true
+    btnWeekly.attr('disabled', false)
+    btnMonthly.attr('disabled', true)
 
     enableNavButtons()
 
@@ -858,38 +892,41 @@ function yearly() {
 
     disableNavButtons()
     currentTable = 'yearly'
-    displayTableYearly(year)
+
+    btnYearly.attr('disabled', true);
+    // Need to code up the yearly view
+    // displayTableYearly(year)
 };
 
 function disableNavButtons() {
 
-    btnPrevious.disabled = true
-    btnReset.disabled = true
-    btnNext.disabled = true
+    btnPrevious.attr('disabled', true)
+    btnReset.attr('disabled', true)
+    btnNext.attr('disabled', true)
 };
 
 function enableNavButtons() {
 
-    btnPrevious.disabled = false
-    btnReset.disabled = false
-    btnNext.disabled = false
+    btnPrevious.attr('disabled', false)
+    btnReset.attr('disabled', false)
+    btnNext.attr('disabled', false)
 };
 
 getLocation()
 fetchData(api,latitude,longitude,method,yyyy)
 
-btnWeekly.addEventListener("click",weekly)
-btnMonthly.addEventListener("click",monthly)
-btnYearly.addEventListener("click",yearly)
+btnWeekly.on("click", weekly)
+btnMonthly.on("click", monthly)
+btnYearly.on("click", yearly)
 
-btnPrevious.addEventListener("click",previousMonth)
-btnReset.addEventListener("click",resetMonth)
-btnNext.addEventListener("click",nextMonth)
+btnPrevious.on("click", previousMonth)
+btnReset.on("click", resetMonth)
+btnNext.on("click", nextMonth)
 
 disableNavButtons()
 
-btnWeekly.disabled = true
-btnYearly.disabled = true
+btnWeekly.attr('disabled', true)
+btnYearly.attr('disabled', true)
 
 console.log('Current Time = ' + currentTime)
 
@@ -898,7 +935,7 @@ setTimeout(() => {
 }, 2500)
 
 function playAzaan () {
-    var audio = document.getElementById("azaan_audio");
+    var audio = $("#azaan_audio");
 
     let salaahTimes = [FajrTimeToday, DhuhrTimeToday, AsrTimeToday, MaghribTimeToday, IshaTimeToday];
 
@@ -919,32 +956,32 @@ function playAzaan () {
     if (currentTime.substr(0,5) == FajrTimeToday.substr(0,5)) {
         console.log('Playing Fajr Azaan...')
         sendNotification('Fajr', FajrTimeToday);
-        audio.style.display = 'block';
-        audio.play();
+        audio.attr('style', 'display: block');
+        audio[0].play();
     }
     else if (currentTime.substr(0,5) == DhuhrTimeToday.substr(0,5)) {
         console.log('Playing Dhuhr Azaan...')
         sendNotification('Dhur', DhuhrTimeToday);
-        audio.style.display = 'block';
-        audio.play();
+        audio.attr('style', 'display: block');
+        audio[0].play();
     }
     else if (currentTime.substr(0,5) == AsrTimeToday.substr(0,5)) {
         console.log('Playing Asr Azaan...')
         sendNotification('Asr', AsrTimeToday);
-        audio.style.display = 'block';
-        audio.play();
+        audio.attr('style', 'display: block');
+        audio[0].play();
     }
     else if (currentTime.substr(0,5) == MaghribTimeToday.substr(0,5)) {
         console.log('Playing Maghrib Azaan...')
         sendNotification('Maghrib', MaghribTimeToday);
-        audio.style.display = 'block';
-        audio.play();
+        audio.attr('style', 'display: block');
+        audio[0].play();
     }
     else if (currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
         console.log('Playing Isha Azaan...')
         sendNotification('Isha', IshaTimeToday);
-        audio.style.display = 'block';
-        audio.play();
+        audio.attr('style', 'display: block');
+        audio[0].play();
     }
     else {
         for (let i = 0; i < endAzaanTimes.length; i++) {
@@ -954,11 +991,11 @@ function playAzaan () {
         }
 
         if (!check) {
-            audio.pause();
-            audio.style.display = 'none';
+            audio.stop();
+            audio.attr('style', 'display: none');
         }
         else {
-            audio.style.display = 'block';
+            audio.attr('style', 'display: block');
         }
     }
 }
@@ -972,21 +1009,19 @@ async function sendNotification(salaah, time) {
     
     Push.create(message);
     
-    const workbox = new Workbox('/serviceWorker.js'); 
-    workbox.register(); 
+    // const workbox = new Workbox('/serviceWorker.js'); 
+    // workbox.register(); 
 
-    const swVersion = await workbox.messageSW({type: 'GET_VERSION', salaah: salaah, message: message}); 
-    console.log('Service Worker version:', swVersion);
+    // const swVersion = await workbox.messageSW({type: 'GET_VERSION', salaah: salaah, message: message}); 
+    // console.log('Service Worker version:', swVersion);
 }
 
 setInterval(function () { playAzaan(); }, 60000)
 
 if (!Push.Permission.has()) {
-        
     if (Push.Permission.get() === 'default') {
         alert('If you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications.');
-   
-   //     alert('Please note, if you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications otherwise select "Block" to disable notifications. You will not be able to change it or re-enable it unless you reset the site permissions.');
+        // alert('Please note, if you wish to receive salaah time notifications, please select "Allow" (in the following popup) to enable notifications otherwise select "Block" to disable notifications. You will not be able to change it or re-enable it unless you reset the site permissions.');
  
     }
     
