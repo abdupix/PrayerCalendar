@@ -257,6 +257,7 @@ function findNextPrayer(FajrTimeToday, DhuhrTimeToday, AsrTimeToday, MaghribTime
     }
     else if (currentTime.substr(0,5) > AsrTimeToday.substr(0,5) & currentTime.substr(0,5) < MaghribTimeToday.substr(0,5) || currentTime.substr(0,5) == MaghribTimeToday.substr(0,5)) {
         toggleBoxShadow(3);
+        console.log(3);
     }
     else if (currentTime.substr(0,5) > MaghribTimeToday.substr(0,5) & currentTime.substr(0,5) < IshaTimeToday.substr(0,5) || currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
         toggleBoxShadow(4);
@@ -302,17 +303,11 @@ function displayData(d) {
 
             findNextPrayer(
                 FajrTimeToday,
-                SunriseToday,
                 DhuhrTimeToday,
                 AsrTimeToday,
                 MaghribTimeToday,
                 IshaTimeToday,
-                FajrTimeTomorrow,
-                SunriseTomorrow,
-                DhuhrTimeTomorrow,
-                AsrTimeTomorrow,
-                MaghribTimeTomorrow,
-                IshaTimeTomorrow
+                FajrTimeTomorrow
             );
 
             dailyDataCreated = true
@@ -349,17 +344,11 @@ function displayData(d) {
 
             findNextPrayer(
                 FajrTimeToday,
-                SunriseToday,
                 DhuhrTimeToday,
                 AsrTimeToday,
                 MaghribTimeToday,
                 IshaTimeToday,
-                FajrTimeTomorrow,
-                SunriseTomorrow,
-                DhuhrTimeTomorrow,
-                AsrTimeTomorrow,
-                MaghribTimeTomorrow,
-                IshaTimeTomorrow
+                FajrTimeTomorrow
             );
 
             dailyDataCreated = true
