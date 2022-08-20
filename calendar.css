@@ -18,6 +18,7 @@ html {
 	--white: #efefef;
 	--black: #22252A;
 	--blue: #2c3e50;
+	--green: #4ec529;
 	--alwaysblue: #2c3e50;
 	--light-blue: #455E76;
 	--gold: rgb(255, 167, 0);
@@ -28,6 +29,7 @@ html[data-theme='dark'] {
 	--bg-main: linear-gradient(45deg, #1C2437, #455880);
 	--grey-white: #22252A;
 	--blue: rgb(255, 167, 0);
+	--green: #4ec529;
 	/* --gold:#2c3e50; */
 	--main-text-color: #B5B5B5;
 	--white: #2d3035;
@@ -120,6 +122,14 @@ h3 {
 .today td {
 	background: rgba(var(--alsogold), 1);
 	color: var(--alwaysblue);
+	font-weight: bold;
+}
+.islamicHoliday td {
+	color: var(--green);
+	font-weight: bold;
+}
+.islamicHoliday h3 {
+	color: var(--green);
 	font-weight: bold;
 }
 .nextPrayer {

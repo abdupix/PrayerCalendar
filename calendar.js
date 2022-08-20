@@ -64,6 +64,73 @@ var englishDatesToInsertFor = ['03 Apr 2022']
 var islamicDatesToInsert = ['30 Shaʿbān 1443']
 var islamicDatesToRemove = ['']
 
+var islamicHolidays = [
+    { 
+        'date': '10 Muḥarram',
+        'name': 'Day of Ashura'
+    },
+    { 
+        'date': '12 Rabīʿ al-awwal',
+        'name': 'Mawlaad-un-Nabi'
+    },
+    { 
+        'date': '27 Rajab',
+        'name': 'Lailat-ul Mehraaj'
+    },
+    { 
+        'date': '15 Shaʿbān',
+        'name': "Lailat-ul Bara'at"
+    },
+    { 
+        'date': '01 Ramaḍān',
+        'name': '1st of Ramadaan'
+    },
+    { 
+        'date': '21 Ramaḍān',
+        'name': 'Lailat-ul Qadr'
+    },
+    { 
+        'date': '23 Ramaḍān',
+        'name': 'Lailat-ul Qadr'
+    },
+    { 
+        'date': '25 Ramaḍān',
+        'name': 'Lailat-ul Qadr'
+    },
+    { 
+        'date': '27 Ramaḍān',
+        'name': 'Lailat-ul Qadr'
+    },
+    { 
+        'date': '29 Ramaḍān',
+        'name': 'Lailat-ul Qadr'
+    },
+    { 
+        'date': '01 Shawwāl',
+        'name': 'Eid-ul Fitr'
+    },
+    { 
+        'date': '08 Dhū al-Ḥijjah',
+        'name': 'Hajj'
+    },
+    { 
+        'date': '09 Dhū al-Ḥijjah',
+        'name': 'Day of Arafah'
+    },
+    { 
+        'date': '10 Dhū al-Ḥijjah',
+        'name': 'Eid-ul Adha'
+    },
+    { 
+        'date': '11 Dhū al-Ḥijjah',
+        'name': 'Hajj'
+    },
+    { 
+        'date': '12 Dhū al-Ḥijjah',
+        'name': 'Hajj'
+     }
+]
+
 var data = []
 var counter = mm
 var year = yyyy
@@ -257,7 +324,6 @@ function findNextPrayer(FajrTimeToday, DhuhrTimeToday, AsrTimeToday, MaghribTime
     }
     else if (currentTime.substr(0,5) > AsrTimeToday.substr(0,5) & currentTime.substr(0,5) < MaghribTimeToday.substr(0,5) || currentTime.substr(0,5) == MaghribTimeToday.substr(0,5)) {
         toggleBoxShadow(3);
-        console.log(3);
     }
     else if (currentTime.substr(0,5) > MaghribTimeToday.substr(0,5) & currentTime.substr(0,5) < IshaTimeToday.substr(0,5) || currentTime.substr(0,5) == IshaTimeToday.substr(0,5)) {
         toggleBoxShadow(4);
@@ -608,6 +674,23 @@ function adjustIslamicDates(islamicDates, d) {
     })
 }
 
+var exit = false;
+
+function isIslamicHoliday(hijriDate) {
+    found = '';
+    // if (!exit) {
+        islamicHolidays.forEach((islamicHoliday) => {
+            if (islamicHoliday['date'] == hijriDate) {  
+                found = islamicHoliday['name'];
+            }
+        })
+    // }
+
+    exit = true;
+
+    return found;
+}
+
 function createMonthsData(d) {
     
     let count = 0
@@ -619,10 +702,15 @@ function createMonthsData(d) {
 
         for (let i = 0; i < d.data[h].length; i++) {
 
-            months[h-1][i] = new Array(9);
+            months[h-1][i] = new Array(10);
             
-            islamicDates[count] = d.data[h][i].date.hijri.day + ' ' + d.data[h][i].date.hijri.month.en + ' ' + d.data[h][i].date.hijri.year
+            hijriDay = d.data[h][i].date.hijri.day
+            hijriMonth = d.data[h][i].date.hijri.month.en
+            hijriYear = d.data[h][i].date.hijri.year
 
+            // islamicDates[count] = d.data[h][i].date.hijri.day + ' ' + d.data[h][i].date.hijri.month.en + ' ' + d.data[h][i].date.hijri.year
+            islamicDates[count] = hijriDay + ' ' + hijriMonth + ' ' + hijriYear
+            
             months[h-1][i][0] = d.data[h][i].date.gregorian.weekday.en
             months[h-1][i][1] = d.data[h][i].date.readable
             // months[h-1][i][2] = d.data[h][i].date.hijri.day + ' ' + d.data[h][i].date.hijri.month.en + ' ' + d.data[h][i].date.hijri.year
@@ -632,7 +720,8 @@ function createMonthsData(d) {
             months[h-1][i][6] = formatText(d.data[h][i].timings.Asr)
             months[h-1][i][7] = formatText(d.data[h][i].timings.Maghrib)
             months[h-1][i][8] = formatText(d.data[h][i].timings.Isha)
-    
+            months[h-1][i][9] = isIslamicHoliday(hijriDay + ' ' + hijriMonth)
+            
             count++
         }
     }
@@ -646,7 +735,8 @@ function createMonthsData(d) {
             displayDate(
                 months[mm-1][dd-1][1],
                 months[mm-1][dd-1][2],
-                months[mm-1][dd][2]
+                months[mm-1][dd][2],
+                months[mm-1][dd][9]
             )
                 
             dateDisplayed = true;
@@ -656,7 +746,8 @@ function createMonthsData(d) {
             displayDate(
                 months[mm-1][dd-1][1],
                 months[mm-1][dd-1][2],
-                months[mm][ddTomorrow-1][2]
+                months[mm][ddTomorrow-1][2],
+                months[mm-1][ddTomorrow-1][9]
             )
                 
             dateDisplayed = true;
@@ -703,7 +794,14 @@ function displayTableMonthly(months,mm) {
             
             if (items[1].innerText == dateToday)
                 rows[count].className = 'today'
-		rows[count].setAttribute("id", "todayScroll")
+
+		    rows[count].setAttribute("id", "todayScroll")
+        
+            if (months[mm-1][i][9] !== '') {
+                rows[count].classList.add('islamicHoliday')
+                rows[count].toggleAttribute('tooltip')
+                rows[count].title = months[mm-1][i][9]
+            }
         }
 
         items.forEach(item => {     
@@ -719,32 +817,40 @@ function displayTableMonthly(months,mm) {
     })
 };
 
-function displayDate(englishDate, islamicDateToday, islamicDateTomorrow) {
+function displayDate(englishDate, islamicDateToday, islamicDateTomorrow, islamicHolidayName) {
     let heading1 = document.createElement('h3');
     let heading2 = document.createElement('h3');
+    let heading3 = document.createElement('h3');
 
     heading1.innerHTML = englishDate;
 
     if (maghribEnded) {
-        heading2.innerHTML = islamicDateTomorrow;
+        heading3.innerHTML = islamicDateTomorrow;
     }
     else {
-        heading2.innerHTML = islamicDateToday;
+        heading3.innerHTML = islamicDateToday;
     }
+
+    heading2.innerHTML = islamicHolidayName;
 
     let div1 = document.createElement('div');
     let div2 = document.createElement('div');
+    let div3 = document.createElement('div');
 
     div1.id = 'englishDate'
-    div2.id = 'islamicDate'
+    div2.id = 'islamicHoliday'
+    div2.classList.add('islamicHoliday')
+    div3.id = 'islamicDate'
 
     div1.append(heading1);
     div2.append(heading2);
+    div3.append(heading3);
     
     let dateDiv = $('#date');
     
     dateDiv.append(div1);
     dateDiv.append(div2);
+    dateDiv.append(div3);
 }
 
 function deleteTable() {
