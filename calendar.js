@@ -677,11 +677,17 @@ function adjustIslamicDates(islamicDates, d) {
 var exit = false;
 
 function isIslamicHoliday(hijriDate) {
-    found = '';
+    found = ' ';
+    var weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const d = new Date();
+    let day = weekday[d.getDay()];
     // if (!exit) {
         islamicHolidays.forEach((islamicHoliday) => {
             if (islamicHoliday['date'] == hijriDate) {  
                 found = islamicHoliday['name'];
+            }
+            else{
+                found = day;
             }
         })
     // }
