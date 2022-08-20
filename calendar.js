@@ -1,6 +1,6 @@
 //Creates a new instance of today and tomorrow's date
 let today = new Date();
-today.setDate(today.getDate()-44)
+today.setDate(today.getDate())
 let tomorrow = new Date();
 tomorrow.setDate(today.getDate()+1)
 
@@ -20,6 +20,8 @@ var min;
 var dateDisplayed = false;
 
 var currentTime = getCurrentTime(today);
+
+var weekdays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 function getCurrentTime(today) {
 
@@ -678,8 +680,7 @@ var exit = false;
 
 function isIslamicHoliday(hijriDate) {
     found = ''
-    var weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    let day = weekday[today.getDay()];
+    let day = weekdays[today.getDay()];
 
     islamicHolidays.forEach((islamicHoliday) => {
         if (islamicHoliday['date'] == hijriDate) {  
@@ -801,7 +802,7 @@ function displayTableMonthly(months,mm) {
 
 		    rows[count].setAttribute("id", "todayScroll")
         
-            if (months[mm-1][i][9] !== '') {
+            if (!weekdays.includes(months[mm-1][i][9])) {
                 rows[count].classList.add('islamicHoliday')
                 rows[count].toggleAttribute('tooltip')
                 rows[count].title = months[mm-1][i][9]
