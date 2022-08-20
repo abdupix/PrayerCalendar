@@ -1,6 +1,6 @@
 //Creates a new instance of today and tomorrow's date
 let today = new Date();
-today.setDate(today.getDate())
+today.setDate(today.getDate()-44)
 let tomorrow = new Date();
 tomorrow.setDate(today.getDate()+1)
 
@@ -677,24 +677,22 @@ function adjustIslamicDates(islamicDates, d) {
 var exit = false;
 
 function isIslamicHoliday(hijriDate) {
-    found = ' ';
+    found = ''
     var weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const d = new Date();
-    let day = weekday[d.getDay()];
-    // if (!exit) {
-        islamicHolidays.forEach((islamicHoliday) => {
-            if (islamicHoliday['date'] == hijriDate) {  
-                found = islamicHoliday['name'];
-            }
-            else{
-                found = day;
-            }
-        })
-    // }
+    let day = weekday[today.getDay()];
 
-    exit = true;
+    islamicHolidays.forEach((islamicHoliday) => {
+        if (islamicHoliday['date'] == hijriDate) {  
+            found = islamicHoliday['name'];
+        }
+    })
 
-    return found;
+    if (found === '') {
+        return day;
+    }
+    else {
+        return found;
+    }
 }
 
 function createMonthsData(d) {
