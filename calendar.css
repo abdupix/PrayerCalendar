@@ -261,6 +261,9 @@ label:active:after {
 	text-align: right;
 	padding-right: 5%; 
 }
+#islamicDate h3, #englishDate h3{
+	font-size: 1.9em;
+}
 #islamicHoliday{
 	width:30%;
 	text-align: center;
