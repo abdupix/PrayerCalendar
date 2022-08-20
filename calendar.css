@@ -267,7 +267,8 @@ label:active:after {
 	background: var(--grey-white);
 	margin:10px;
 	border-radius:10px;
-	box-shadow: inset 15px 15px 32px rgb(0 0 0 / 6%);
+	box-shadow: inset 15px 15px 32px rgb(0 0 0 / 6%), inset 0px 0px 0px 2px var(--gold);;
+	
 }
 #islamicHoliday h3{
 	margin:10px;
