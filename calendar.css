@@ -246,7 +246,8 @@ label:active:after {
 	transform: translate(-50%, 50%);
 }
 #date h3{
-	margin:20px
+	margin:25px;
+	
 }
 
 #englishDate {
