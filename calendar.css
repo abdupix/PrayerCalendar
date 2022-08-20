@@ -311,6 +311,7 @@ label:active:after {
 		transform: translate(-50%, 25%);
 		top: 5%;
 	}
+
 	.poly {
 		clip-path: polygon(67% 98%, 100% 90%, 100% 100%, 0 100%, 0 90%);
 		background: var(--white);
@@ -327,6 +328,17 @@ label:active:after {
 	margin-top: -55px;
 	}
 }
+@media screen and (max-width: 	900px){
+	#date{
+	margin-top: -75px;
+	}
+	.mainBox{
+		transform: translate(-50%, 43%);
+	}
+	.mainBox h3{
+		margin-top:auto;
+	}
+}
 @media screen and (max-width: 680px) {
 	.mainBox {
 		width: 100%;
@@ -335,14 +347,20 @@ label:active:after {
 		top: 2.5%;
 		left: 50%;
 		margin-right: -50%;
-		transform: translate(-50%, 17%);
+		transform: translate(-50%, 26.5%);
 			margin-top:-50px;
 	}
+	
 			
 	#date {
 		color: var(--gold);
 		width: 100%;
+		max-width: 90vw;
 		display: block;
+		margin-top: -90px;
+	}
+	#islamicHoliday {
+		width: auto;
 	}
 
 	#englishDate {
