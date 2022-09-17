@@ -52,7 +52,7 @@ const table = $('#tableDisplay')
 
 const btnWeekly = $('#weekly')
 const btnMonthly = $('#monthly')
-const btnYearly = $('#yearly')
+const btnHolidays = $('#holidays')
 
 const btnNext = $('#next')
 const btnReset = $('#reset')
@@ -151,11 +151,23 @@ var weekDataCreated = false
 var index = 0
 var monthsArray = []
 var months = new Array(12)
+var holidays = new Array(16)
+
+var defaultTableHeadings = `
+<th>Weekday</th>
+<th>Date (English)</th>
+<th>Date (Arabic)</th>
+<th>Fajr</th>
+<th>Sunrise</th>
+<th>Zhuhr</th>
+<th>Asr</th>
+<th>Maghrib</th>
+<th>Isha</th>`
 
 var currentTable = 'weekly'
 
 var navButtons = [btnPrevious,btnReset,btnNext]
-var tableButtons = [btnWeekly,btnMonthly,btnYearly]
+var tableButtons = [btnWeekly,btnMonthly,btnHolidays]
 
 let FajrTimeToday = ''
 let SunriseToday = ''
@@ -556,6 +568,8 @@ function displayTableWeekly(weeks,length) {
     let rows = []
     let count = 0
     
+    $('#table-row-headings').html(defaultTableHeadings)
+    
     for (let i = 0; i < 7; i++) {
         if (Array.isArray(weeks[i]) && weeks[i].length) {
             if (weeks[i][1].substr(0,2) <= length) {
@@ -676,11 +690,8 @@ function adjustIslamicDates(islamicDates, d) {
     })
 }
 
-var exit = false;
-
-function isIslamicHoliday(hijriDate) {
+function isIslamicHoliday(hijriDate, dayOfWeek) {
     found = ''
-    let day = weekdays[today.getDay()];
 
     islamicHolidays.forEach((islamicHoliday) => {
         if (islamicHoliday['date'] == hijriDate) {  
@@ -689,7 +700,7 @@ function isIslamicHoliday(hijriDate) {
     })
 
     if (found === '') {
-        return day;
+        return dayOfWeek;
     }
     else {
         return found;
@@ -700,7 +711,8 @@ function createMonthsData(d) {
     
     let count = 0
     var islamicDates = []
-    
+    let holidaysCounter = 0
+
     for (let h = 1; h < 13; h++) {
 
         months[h-1] = new Array(d.data[h].length)
@@ -708,6 +720,7 @@ function createMonthsData(d) {
         for (let i = 0; i < d.data[h].length; i++) {
 
             months[h-1][i] = new Array(10);
+            holidays[holidaysCounter] = new Array(10);
             
             hijriDay = d.data[h][i].date.hijri.day
             hijriMonth = d.data[h][i].date.hijri.month.en
@@ -718,6 +731,7 @@ function createMonthsData(d) {
             
             months[h-1][i][0] = d.data[h][i].date.gregorian.weekday.en
             months[h-1][i][1] = d.data[h][i].date.readable
+            months[h-1][i][2] = islamicDates[count]
             // months[h-1][i][2] = d.data[h][i].date.hijri.day + ' ' + d.data[h][i].date.hijri.month.en + ' ' + d.data[h][i].date.hijri.year
             months[h-1][i][3] = formatText(d.data[h][i].timings.Fajr)
             months[h-1][i][4] = formatText(d.data[h][i].timings.Sunrise)
@@ -725,12 +739,27 @@ function createMonthsData(d) {
             months[h-1][i][6] = formatText(d.data[h][i].timings.Asr)
             months[h-1][i][7] = formatText(d.data[h][i].timings.Maghrib)
             months[h-1][i][8] = formatText(d.data[h][i].timings.Isha)
-            months[h-1][i][9] = isIslamicHoliday(hijriDay + ' ' + hijriMonth)
-            
+            months[h-1][i][9] = isIslamicHoliday(hijriDay + ' ' + hijriMonth, months[h-1][i][0])
+
+            if (!weekdays.includes(months[h-1][i][9])) {
+                holidays[holidaysCounter][0] = months[h-1][i][0]
+                holidays[holidaysCounter][1] = months[h-1][i][1]
+                holidays[holidaysCounter][2] = months[h-1][i][2]
+                holidays[holidaysCounter][3] = months[h-1][i][3]
+                holidays[holidaysCounter][4] = months[h-1][i][4]
+                holidays[holidaysCounter][5] = months[h-1][i][5]
+                holidays[holidaysCounter][6] = months[h-1][i][6]
+                holidays[holidaysCounter][7] = months[h-1][i][7]
+                holidays[holidaysCounter][8] = months[h-1][i][8]
+                holidays[holidaysCounter][9] = months[h-1][i][9]
+
+                holidaysCounter++
+            }
+
             count++
         }
     }
-
+    
     adjustIslamicDates(islamicDates, d)
     
     if (!dateDisplayed)
@@ -769,6 +798,8 @@ function displayTableMonthly(months,mm) {
     let rows = []
     let count = 0
     
+    $('#table-row-headings').html(defaultTableHeadings)
+
     for (let i = 0; i < months[mm-1].length; i++) {
             
         let items = [
@@ -821,6 +852,75 @@ function displayTableMonthly(months,mm) {
         table.append(row)
     })
 };
+
+
+function displayTableHolidays() {
+
+    deleteTable()
+
+    let rows = []
+    let count = 0
+
+    for (let i = 0; i < islamicHolidays.length; i++) {
+        $('#table-row-headings').html(`
+        <th>Holiday</th>
+        <th>Weekday</th>
+        <th>Date (English)</th>
+        <th>Date (Arabic)</th>
+        <th>Fajr</th>
+        <th>Sunrise</th>
+        <th>Zhuhr</th>
+        <th>Asr</th>
+        <th>Maghrib</th>
+        <th>Isha</th>`)
+        
+        let items = [
+            document.createElement('td'),
+            document.createElement('td'),
+            document.createElement('td'),
+            document.createElement('td'),
+            document.createElement('td'),
+            document.createElement('td'),
+            document.createElement('td'),
+            document.createElement('td'),
+            document.createElement('td'),
+            document.createElement('td')
+        ]
+
+        items[0].append(holidays[i][9])
+        items[1].append(holidays[i][0])
+        items[2].append(holidays[i][1])
+        items[3].append(holidays[i][2])
+        items[4].append(holidays[i][3])
+        items[5].append(holidays[i][4])
+        items[6].append(holidays[i][5])
+        items[7].append(holidays[i][6])
+        items[8].append(holidays[i][7])
+        items[9].append(holidays[i][8])
+
+        if (items[0].innerText !== '') {
+
+            rows[count] = document.createElement('tr')
+            
+            if (items[1].innerText == dateToday)
+                rows[count].className = 'today'
+
+		    rows[count].setAttribute("id", "todayScroll")
+        }
+
+        items.forEach(item => {     
+            if (item.innerText !== '')
+                rows[count].append(item)
+        })
+
+        count++
+    }
+
+    rows.forEach(row => {
+        table.append(row)
+    })
+};
+
 
 function displayDate(englishDate, islamicDateToday, islamicDateTomorrow, islamicHolidayName) {
     let heading1 = document.createElement('h3');
@@ -891,9 +991,6 @@ function nextMonth() {
             else if (currentTable == 'monthly') {
                 displayTableMonthly(months,counter)
             }
-            else {
-                displayTableYearly(yyyy)
-            }
         }, 2500)
     }
     else {
@@ -902,9 +999,6 @@ function nextMonth() {
         }
         else if (currentTable == 'monthly') {
             displayTableMonthly(months,counter)
-        }
-        else {
-            displayTableYearly(year)
         }
     }
 };
@@ -929,9 +1023,6 @@ function previousMonth() {
             else if (currentTable == 'monthly') {
                 displayTableMonthly(months,counter)
             }
-            else {
-                displayTableYearly(yyyy)
-            }
         }, 2500)
     }
     else {
@@ -940,9 +1031,6 @@ function previousMonth() {
         }
         else if (currentTable == 'monthly') {
             displayTableMonthly(months,counter)
-        }
-        else {
-            displayTableYearly(yyyy)
         }
     }
 };
@@ -959,7 +1047,7 @@ function resetMonth() {
 
     tableButtons[0].attr('disabled', true)
     tableButtons[1].attr('disabled', false)
-    tableButtons[2].attr('disabled', true)
+    tableButtons[2].attr('disabled', false)
 
     displayTableWeekly(weeks,length)
 };
@@ -968,6 +1056,7 @@ function weekly() {
     
     btnWeekly.attr('disabled', true)
     btnMonthly.attr('disabled', false)
+    btnHolidays.attr('disabled', false)
 
     disableNavButtons()
 
@@ -980,6 +1069,7 @@ function monthly() {
     
     btnWeekly.attr('disabled', false)
     btnMonthly.attr('disabled', true)
+    btnHolidays.attr('disabled', false)
 
     enableNavButtons()
 
@@ -988,14 +1078,18 @@ function monthly() {
 };
 
 
-function yearly() {
+function showHolidays() {
+
+    btnWeekly.attr('disabled', false)
+    btnMonthly.attr('disabled', false)
+    btnHolidays.attr('disabled', true)
 
     disableNavButtons()
-    currentTable = 'yearly'
+    currentTable = 'holidays'
 
-    btnYearly.attr('disabled', true);
+    // btnHolidays.attr('disabled', true);
     // Need to code up the yearly view
-    // displayTableYearly(year)
+    displayTableHolidays(year)
 };
 
 function disableNavButtons() {
@@ -1017,7 +1111,7 @@ fetchData(api,latitude,longitude,method,yyyy)
 
 btnWeekly.on("click", weekly)
 btnMonthly.on("click", monthly)
-btnYearly.on("click", yearly)
+btnHolidays.on("click", showHolidays)
 
 btnPrevious.on("click", previousMonth)
 btnReset.on("click", resetMonth)
@@ -1026,7 +1120,6 @@ btnNext.on("click", nextMonth)
 disableNavButtons()
 
 btnWeekly.attr('disabled', true)
-btnYearly.attr('disabled', true)
 
 console.log('Current Time = ' + currentTime)
 

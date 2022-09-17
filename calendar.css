@@ -639,18 +639,9 @@ button {
 #previous:disabled, #reset:disabled, #next:disabled {
 	opacity: 0.5;
 }
-#weekly:disabled {
+#monthly:disabled, #holidays:disabled, #weekly:disabled {
 	background: var(--gold2);
 	color: var(--blue);
-}
-#monthly:disabled {
-	background: var(--gold2);
-	color: var(--blue);
-}
-#yearly:disabled {
-	background: var(--blue);
-	color: var(--gold2);
-	display: none;
 }
 .buttonTable-container {
 	background: var(--white);
