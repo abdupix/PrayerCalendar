@@ -64,7 +64,7 @@ var englishDatesToRemoveFor = ['']
 // Arrays used to add any missing islamic dates if the english date matches
 var englishDatesToInsertFor = ['03 Apr 2022']
 var islamicDatesToInsert = ['30 Shaʿbān 1443']
-var islamicDatesToRemove = ['']
+var islamicDatesToRemove = ['30 Muḥarram 1444']
 
 var islamicHolidays = [
     { 
@@ -453,7 +453,7 @@ function displayData(d) {
         if (weekDataCreated === false) {
             let startOfWeek = findStartOfWeeks(d1)
             start = getStartValue(startOfWeek,d1.length)
-            weeks = createWeeksData(d1,start, months[mm-1])
+            weeks = createWeeksData(months[mm-1], start)
             length = d1.length
             displayTableWeekly(weeks,length)
             
@@ -464,7 +464,7 @@ function displayData(d) {
         if (weekDataCreated === false) {
             let startOfWeek = findStartOfWeeks(d2)
             start = getStartValue(startOfWeek,d2.length)
-            weeks = createWeeksData(d2,start, months[mmNext-1])
+            weeks = createWeeksData(months[mmNext-1], start)
             length = d2.length
             
             displayTableWeekly(weeks,length)
@@ -535,24 +535,25 @@ function getStartValue(startOfWeek,dataLength) {
     return start
 };
 
-function createWeeksData(data, start, month) {
+function createWeeksData(data, start) {
     let count = 0
-
+    
     for (let i = start - 1; (count < 7 && (i <= data.length)); i++) {
               
         weeks[count] = []
 
         if (i < data.length) {
             
-            weeks[count][0] = data[i].date.gregorian.weekday.en
-            weeks[count][1] = data[i].date.readable
-            weeks[count][2] = month[i][2]
-            weeks[count][3] = formatText(data[i].timings.Fajr)
-            weeks[count][4] = formatText(data[i].timings.Sunrise)
-            weeks[count][5] = formatText(data[i].timings.Dhuhr)
-            weeks[count][6] = formatText(data[i].timings.Asr)
-            weeks[count][7] = formatText(data[i].timings.Maghrib)
-            weeks[count][8] = formatText(data[i].timings.Isha)
+            weeks[count][0] = data[i][0]
+            weeks[count][1] = data[i][1]
+            weeks[count][2] = data[i][2]
+            weeks[count][3] = formatText(data[i][3])
+            weeks[count][4] = formatText(data[i][4])
+            weeks[count][5] = formatText(data[i][5])
+            weeks[count][6] = formatText(data[i][6])
+            weeks[count][7] = formatText(data[i][7])
+            weeks[count][8] = formatText(data[i][8])
+            weeks[count][9] = data[i][9]
 
             count++
         }
@@ -601,6 +602,12 @@ function displayTableWeekly(weeks,length) {
                     
                     if (items[1].innerText == dateToday)
                         rows[count].className = 'today'
+
+                    if (!weekdays.includes(weeks[i][9])) {
+                        rows[count].classList.add('islamicHoliday')
+                        rows[count].toggleAttribute('tooltip')
+                        rows[count].title = weeks[i][9]
+                    }
                 }
 
                 items.forEach(item => {     
