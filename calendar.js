@@ -64,7 +64,7 @@ var englishDatesToRemoveFor = ['']
 // Arrays used to add any missing islamic dates if the english date matches
 var englishDatesToInsertFor = ['03 Apr 2022']
 var islamicDatesToInsert = ['30 Shaʿbān 1443']
-var islamicDatesToRemove = ['30 Muḥarram 1444']
+var islamicDatesToRemove = ['']
 
 var islamicHolidays = [
     { 
@@ -677,11 +677,19 @@ function adjustIslamicDates(islamicDates, d) {
 
     englishDatesToInsertFor.forEach((englishDate) => {
         months.forEach((month) => {
+            let month_index = months.indexOf(month);
+
             month.forEach((day) => {
+                let day_index = month.indexOf(day);
+                let hijriDate = islamicDates[index].substr(0, islamicDates[index].length - 5)
+
                 if (day[1] == englishDate) {
                     let islamicDateIndex = englishDatesToInsertFor.indexOf(englishDate)
                     insertIslamicDate(islamicDates, islamicDatesToInsert[islamicDateIndex], index, d, true)
                 }
+
+                months[month_index][day_index][9] = isIslamicHoliday(hijriDate, months[month_index][day_index][0])
+
                 index++
             })
         })
@@ -693,6 +701,21 @@ function adjustIslamicDates(islamicDates, d) {
                 let index = islamicDates.indexOf(islamicDate)
                 removeIslamicDate(islamicDates, index, d, true)
             }
+        })
+    })
+
+    index = 0;
+
+    months.forEach((month) => {
+        let month_index = months.indexOf(month);
+
+        month.forEach((day) => {
+            let day_index = month.indexOf(day);
+            let hijriDate = islamicDates[index].substr(0, islamicDates[index].length - 5)
+            months[month_index][day_index][2] = islamicDates[index]
+            months[month_index][day_index][9] = isIslamicHoliday(hijriDate, months[month_index][day_index][0])
+
+            index++
         })
     })
 }
