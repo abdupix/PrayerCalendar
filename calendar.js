@@ -314,16 +314,7 @@ function toggleBoxShadow(index) {
         $('#IshaPrayer')
     ];
 
-    for (let i = 0; i < prayerCardNames.length; i++) {
-        if (i == index) {
-            prayerCardNames[i].addClass('nextPrayer');
-        }
-        else {
-            prayerCardNames[i].removeClass('nextPrayer');
-        }
-    }
-
-
+    prayerCardNames[index].toggleClass('nextPrayer');
 }
 
 function findNextPrayer(FajrTimeToday, DhuhrTimeToday, AsrTimeToday, MaghribTimeToday, IshaTimeToday, FajrTimeTomorrow) {
@@ -800,7 +791,7 @@ function createMonthsData(d) {
                 months[mm-1][dd-1][1],
                 months[mm-1][dd-1][2],
                 months[mm-1][dd][2],
-                months[mm-1][dd][9]
+                months[mm-1][dd-1][9]
             )
                 
             dateDisplayed = true;
@@ -811,7 +802,7 @@ function createMonthsData(d) {
                 months[mm-1][dd-1][1],
                 months[mm-1][dd-1][2],
                 months[mm][ddTomorrow-1][2],
-                months[mm-1][ddTomorrow-1][9]
+                months[mm-1][dd-1][9]
             )
                 
             dateDisplayed = true;
