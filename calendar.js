@@ -11,7 +11,7 @@ var mm = today.getMonth()+1; //Adds 1 to the month because it is 0 based
 var yyyy = today.getFullYear();
 
 var ddTomorrow = tomorrow.getDate();
-var mmNext = tomorrow.getMonth()+2; //Adds 1 to the month because it is 0 based
+var mmNext = tomorrow.getMonth() < tomorrow.getMonth()+2 ? tomorrow.getMonth()+1 : tomorrow.getMonth()+2 //Adds 1 to the month because it is 0 based
 var yyyyNext = tomorrow.getFullYear()
 
 var hh;
@@ -345,6 +345,10 @@ function displayData(d) {
     let d1 = d.data[mm]
     let d2 = d.data[mmNext]
 
+    console.log(d.data)
+    console.log(mm)
+    console.log(mmNext)
+    
     if (mmNext < mm) {
         console.log('Next Year')
 
