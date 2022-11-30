@@ -345,10 +345,6 @@ function displayData(d) {
     let d1 = d.data[mm]
     let d2 = d.data[mmNext]
 
-    console.log(d.data)
-    console.log(mm)
-    console.log(mmNext)
-    
     if (mmNext < mm) {
         console.log('Next Year')
 
