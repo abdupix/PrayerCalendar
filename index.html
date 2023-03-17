@@ -18,7 +18,7 @@
 	<script src="push.js"></script>
 </head>
 <body>
-	<div id="date"></div>
+	<div class="topBanner" id="date"></div>
 
 	<div id="overlay" class="msgOverlay"></div>
 	<div id="errorMessage" class="errorMsg">
@@ -27,47 +27,36 @@
 		<a id="closeMsg" onclick="closePopup()">Close</a>
 	</div>
 
-
+<div class="mainPrayerContainer">
 	<div class="mainBox">
 		<div class="smallerBox">
-			<div class="row">
-				<div class="column">
-					<div class="card" id="FajrPrayer">
-						<h3>Fajr</h3>
-						<p id="fajrTime"></p>
-					</div>
-				</div>
-				<div class="column">
-					<div class="card" id="Sunrise">
-						<h3>Sunrise</h3>
-						<p id="sunriseTime"></p>
-					</div>
-				</div>
-				<div class="column">
-					<div class="card" id="DhuhrPrayer">
-						<h3>Dhuhr</h3>
-						<p id="dhuhrTime"></p>
-					</div>
-				</div>
-				<div class="column">
-					<div class="card" id="AsrPrayer">
-						<h3>Asr</h3>
-						<p id="asrTime"></p>
-					</div>
-				</div>
-				<div class="column">
-					<div class="card" id="MaghribPrayer">
-						<h3>Maghrib</h3>
-						<p id="maghribTime"></p>
-					</div>
-				</div>
-				<div class="column">
-					<div class="card" id="IshaPrayer">
-						<h3>Isha</h3>
-						<p id="ishaTime"></p>
-					</div>
-				</div>
+			<div class="card" id="FajrPrayer">
+				<h3>Fajr</h3>
+				<p id="fajrTime"></p>
 			</div>
+			<div class="card" id="Sunrise">
+				<h3>Sunrise</h3>
+				<p id="sunriseTime"></p>
+			</div>
+			<div class="card" id="DhuhrPrayer">
+				<h3>Dhuhr</h3>
+				<p id="dhuhrTime"></p>
+			</div>
+			<div class="card" id="AsrPrayer">
+				<h3>Asr</h3>
+				<p id="asrTime"></p>
+			</div>
+			<div class="card grid-col-span-2" id="MaghribPrayer">
+				<h3>Maghrib</h3>
+				<p id="maghribTime"></p>
+			</div>
+			<div class="card grid-col-span-2" id="IshaPrayer">
+				<h3>Isha</h3>
+				<p id="ishaTime"></p>
+			</div>
+		
+
+		
 		</div>
 		<br>
 		<div class="toggle-container">
@@ -125,6 +114,7 @@
 			<source src="azaan.mp3" type="audio/mp3">
 		</audio>
 	</div>
+</div>
 </div>
 <div class="poly">
 	</div>
