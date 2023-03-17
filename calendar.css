@@ -287,6 +287,9 @@ label:active:after {
 		justify-content: space-around;
 		padding:0;
 	}
+	.card h3{
+		margin:0.25em 0;
+	}
 
 	.topBanner{
 		flex-direction: column;
