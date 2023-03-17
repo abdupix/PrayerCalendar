@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Advent+Pro&display=swap');
+
+/* padding-block: 2rem;
+	width: min(95%, 70rem);
+	margin-inline: auto; */
 * {
 	box-sizing: border-box;
 	transition: margin ease-out .4s;
@@ -40,6 +44,7 @@ html[data-theme='dark'] {
 body {
 	padding-top:20px;
 	background-image: url(index-main.jpg);
+
 	background-size: 100%;
 	background-attachment: fixed;
 	background-size: cover;
@@ -47,6 +52,10 @@ body {
 h3 {
 	font-size: 2.5em;
 
+}
+h4{
+	margin:0;
+	font-size:2rem;
 }
 .card p {
 	font-size: 1.4em;
@@ -236,6 +245,46 @@ label:active:after {
 	margin:10px;
 	color:var(--blue);
 } 
+.bottomContentContainer{
+	display: grid;
+	grid-template-columns: 
+	repeat(3, 1fr);
+	gap:1.5rem;
+	padding-block: 2rem;
+	width: min(95%, 70rem);
+	margin-inline: auto;
+}
+.bottomContentContainer-container{
+	padding:20px;
+	background-color: #fff;
+	border-radius:10px;
+	box-shadow: 0px 4px 24px 1px #0000000D;
+	font-size: larger;
+
+}
+.grid-col-span-2-bottomc{
+	grid-column: span 2;
+}
+.grid-col-span-3-bottomc{
+	grid-column: span 3;
+}
+.fasting-dua {
+	text-align: center;
+	font-size:1.75rem;
+}
+.Hadith-narrator{
+	font-weight: 600;
+	margin-bottom: 0.5em;
+}
+.Hadith-main{
+margin:auto;
+}
+.Hadith-book{
+	font-weight: 450;
+	margin-top:0.5em;
+	font-style: italic;
+}
+
 
 /* Responsive columns */
 
@@ -290,7 +339,6 @@ label:active:after {
 	.card h3{
 		margin:0.25em 0;
 	}
-
 	.topBanner{
 		flex-direction: column;
 	}
