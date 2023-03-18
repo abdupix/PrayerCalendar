@@ -315,8 +315,8 @@ function toggleBoxShadow(index) {
     ];
 
     prayerCardNames[index].toggleClass('nextPrayer');
-}
 
+}
 function findNextPrayer(FajrTimeToday, DhuhrTimeToday, AsrTimeToday, MaghribTimeToday, IshaTimeToday, FajrTimeTomorrow) {
     if (currentTime.substr(0,5) < FajrTimeToday.substr(0,5) || currentTime.substr(0,5) == FajrTimeToday.substr(0,5)) {
         toggleBoxShadow(0);
@@ -490,6 +490,7 @@ function displayIndividualData(
 		$("#maghribTime").html(`${MaghribTimeToday}`)
 		$("#ishaTime").html(`${IshaTimeToday}`)
     }
+    console.log(IshaTimeToday);
 }
 
 function findStartOfWeeks(data) {
@@ -1243,3 +1244,6 @@ if (!Push.Permission.has()) {
 }
 
 console.log('Notification Permission: ' + Push.Permission.get())
+
+
+
