@@ -60,7 +60,7 @@ function convertMonth(){
 
 
 function getArabicDate(){
-const arabicDateApiUrl = 'http://api.aladhan.com/v1/gToH/18-03-2023';
+const arabicDateApiUrl = 'https://api.aladhan.com/v1/gToH/18-03-2023';
 fetch(arabicDateApiUrl)
 .then(response => response.json())
 .then(dateApi => {
