@@ -311,7 +311,8 @@ margin:auto;
 	align-items: center;
 	padding:0;
 	margin:0;
-
+	justify-content: space-between;
+	flex-wrap: nowrap;
 }
 .next-prayer-hour, .next-prayer-min{
 	display: flex;
@@ -323,8 +324,30 @@ margin:auto;
 .next-prayer-container h1 {
 	line-height: 7rem;
 }
-
-
+.next-islamic-date{
+	display: grid;
+	gap:3rem;
+	grid-template-columns: repeat(2, 1fr);
+	margin-left:20px;
+	
+}
+.next-islamic-date-line h1{
+	font-size: 1.5rem;
+	margin:0;
+}
+.next-islamic-date-line{
+	display: flex;
+	flex-direction: row;
+}
+.next-islamic-date-text p{
+	margin:0 20px;
+	text-align: right;
+	font-size:1.5rem;
+}
+.line-between-dates{
+	margin:1rem 12rem;
+	border-top: 2px solid var(--gold);
+}
 
 
 
@@ -463,109 +486,16 @@ margin:auto;
 	td:nth-of-type(9):before {
 		content: "Isha";
 	}
-}
-
-@media screen and (max-width: 1160) { 
-	
-	.LocationMode{
-		padding-right: 40% !important;
-		
+	.hadith, .nextPrayerIn, .nextImportantDate, .upcomingDates{
+		grid-template-columns: repeat(1, 1fr);
+		grid-column: span 3;
+	}
+	.nextPrayerIn{
+		display:none;
 	}
 }
 
-@media screen and (max-width: 930px) { 
-	
-	.LocationMode{
-		padding-right: 30% !important;
-		
-	}
-}
 
-@media screen and (max-width: 800px) { 
-	
-	.LocationMode{
-		padding-right: 20% !important;
-		
-	}
-}
-
-@media screen and (max-width: 620px) { 
-	
-	.LocationMode{
-		padding-right: 10% !important;
-		
-	}
-}
-
-@media screen and (max-width: 619px) {
-	.inline {
-		display: inline !important;
-	}
-	
-	.LocationMode{
-		padding-right: 0px !important;
-		
-	}
-}
-
-@media screen and (max-width: 440px) {
-	.inline {
-		display: inline !important;
-	}
-	
-	.LocationMode{
-		padding-right: 0px !important;
-		
-	}
-
-}
-
-@media screen and (max-width: 400px) {
-	.inline {
-		display: inline !important;
-	}
-	
-	.LocationMode{
-		padding-right: 0px !important;
-		
-	}
-
-
-}
-
-@media screen and (max-width: 350px) {
-	.inline {
-		display: inline !important;
-	}
-	
-	.LocationMode{
-		padding-right: 0px !important;
-		
-	}
-} 
-
-@media screen and (max-width: 325px) {
-
-	.inline {
-		display: inline !important;
-	}
-	
-	.LocationMode{
-		padding-right: 0px !important;
-		
-	}
-}
-
-@media screen and (max-width: 300px) {
-	.inline {
-		display: inline !important;
-	}
-	
-	.LocationMode{
-		padding-right: 0px !important;
-		
-	}
-} 
 
 .table4NextMonth {
 	background-color: var(--white);
@@ -633,10 +563,7 @@ button {
 		display: inline;
 	}
 
-	.LocationMode{
-		padding-right: 0%;
-		
-	}
+
 }
 .select-css{
 	color: var(--blue);
@@ -648,10 +575,8 @@ button {
 	border-radius: 10px;
 }
 .LocationMode{
-	padding-right: 60%;
-	margin-top:-18px;
+
 	font-weight: bold;
-    
 }
 .LocationMode select{
 	box-shadow: 15px 15px 32px rgba(0, 0, 0, 0.1);
@@ -660,8 +585,9 @@ button {
 }
 
 .align{
-	margin-top:-18px;
+
 	font-weight: bold;
+	text-align: right;
 }
 
 .inline {
