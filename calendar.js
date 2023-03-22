@@ -62,8 +62,8 @@ const btnPrevious = $('#previous')
 var englishDatesToRemoveFor = ['']
 
 // Arrays used to add any missing islamic dates if the english date matches
-var englishDatesToInsertFor = ['']
-var islamicDatesToInsert = ['']
+var englishDatesToInsertFor = ['23 Mar 2023']
+var islamicDatesToInsert = ['30 Shaʿbān 1444']
 var islamicDatesToRemove = ['']
 
 var islamicHolidays = [
