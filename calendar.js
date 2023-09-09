@@ -228,6 +228,7 @@ let latitude = '-45.87416';
 let longitude = '170.50361';
 
 let method = 2
+let school = 1 // 0 for Shafi, 1 for Hanafi.
 let month = mm
 
 function resetEverything() {
@@ -239,7 +240,7 @@ function resetEverything() {
 
     changeLocation()
 
-    fetchData(api,latitude,longitude,method,yyyy);
+    fetchData(api,latitude,longitude,method,yyyy, school);
 }
 
 function changeLocation(){
@@ -287,10 +288,10 @@ function closePopup() {
     $("#errorMessage").attr("style", "display: none;");
 }
 
-function fetchData(api,latitude,longitude,method,yyyy) {
+function fetchData(api,latitude,longitude,method,yyyy, school) {
  
     //Fetch used to query the API for the prayer times
-    fetch(`${api}?latitude=${latitude}&longitude=${longitude}&method=${method}&year=${yyyy}&annual=true`)
+    fetch(`${api}/${yyyy}?latitude=${latitude}&longitude=${longitude}&method=${method}&school=${school}&annual=true`)
     .then(res => res.json())
     .then(d => {        
         //Checks if the request was successful and the page exists
