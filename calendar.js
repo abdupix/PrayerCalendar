@@ -62,8 +62,8 @@ const btnPrevious = $('#previous')
 var englishDatesToRemoveFor = ['']
 
 // Arrays used to add any missing islamic dates if the english date matches
-var englishDatesToInsertFor = ['23 Mar 2023']
-var islamicDatesToInsert = ['30 Shaʿbān 1444']
+var englishDatesToInsertFor = ['12 Jan 2024']
+var islamicDatesToInsert = ['30 Jumādá al-ākhirah 1445']
 var islamicDatesToRemove = ['']
 
 var islamicHolidays = [
@@ -734,7 +734,6 @@ function createMonthsData(d) {
     
     let count = 0
     var islamicDates = []
-    let holidaysCounter = 0
 
     for (let h = 1; h < 13; h++) {
 
@@ -743,8 +742,6 @@ function createMonthsData(d) {
         for (let i = 0; i < d.data[h].length; i++) {
 
             months[h-1][i] = new Array(10);
-            holidays[holidaysCounter] = new Array(10);
-            
             hijriDay = d.data[h][i].date.hijri.day
             hijriMonth = d.data[h][i].date.hijri.month.en
             hijriYear = d.data[h][i].date.hijri.year
@@ -764,6 +761,18 @@ function createMonthsData(d) {
             months[h-1][i][8] = formatText(d.data[h][i].timings.Isha)
             months[h-1][i][9] = isIslamicHoliday(hijriDay + ' ' + hijriMonth, months[h-1][i][0])
 
+            count++
+        }
+    }
+
+    adjustIslamicDates(islamicDates, d)
+
+    let holidaysCounter = 0
+
+    for (let h = 1; h < 13; h++) {
+        for (let i = 0; i < d.data[h].length; i++) {
+            holidays[holidaysCounter] = new Array(10);
+
             if (!weekdays.includes(months[h-1][i][9])) {
                 holidays[holidaysCounter][0] = months[h-1][i][0]
                 holidays[holidaysCounter][1] = months[h-1][i][1]
@@ -778,13 +787,9 @@ function createMonthsData(d) {
 
                 holidaysCounter++
             }
-
-            count++
         }
     }
-    
-    adjustIslamicDates(islamicDates, d)
-    
+
     if (!dateDisplayed)
     {
         if (dd < months[mm-1].length) {
